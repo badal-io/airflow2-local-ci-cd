@@ -51,10 +51,14 @@
 
 ## Commands for working inside a container: ###
 - To run unit tests under the tests/unit directory:
-`./airflow "test command"`, example:`./airflow "pytest tests/unit"`
+`./airflow "test command"`
+
+example:`./airflow "pytest tests/unit"`
 
 - To run integration tests under the tests/integration directory with a test config file:
-`./airflow "test command"`, example:`./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`
+`./airflow "test command"`
+
+example:`./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`
 
 - To spin up an Ops container with Bash session:
 `./airflow bash`
