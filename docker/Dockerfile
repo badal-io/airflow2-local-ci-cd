@@ -9,3 +9,5 @@ ENV PATH $PATH:/home/airflow/google-cloud-sdk/bin
 # INSTALL TOOLS & DEPENDENCIES
 COPY requirements-airflow.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+#COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
