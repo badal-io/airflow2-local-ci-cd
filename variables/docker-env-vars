@@ -9,7 +9,7 @@ AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
 AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=false
 
 # - GCP connection (gcloud auth logn required)
-GCP_PROJECT_ID='badal-sandbox-309813' # Your GCP projecy ID here
+GCP_PROJECT_ID='badal-sandbox-309813' # << Your GCP project ID here
 AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT='google-cloud-platform://user:password@host/schema?extra__google_cloud_platform__scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&extra__google_cloud_platform__project=${GCP_PROJECT_ID}'
 
 
