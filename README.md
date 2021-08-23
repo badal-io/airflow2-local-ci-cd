@@ -1,8 +1,8 @@
 
 ## Dependencies & prerequisities on a local machine ##
-- install docker
+- install docker: https://docs.docker.com/get-docker/
 
-- install docker compose
+- install docker compose: https://docs.docker.com/compose/install/
 
 ## Clone the repo & navigate to the directory
 
