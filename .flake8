@@ -1,0 +1,6 @@
+[flake8]
+ignore = E203, E266, E501, W503, F403, F401, E731, E722
+max-line-length = 126
+max-complexity = 18
+select = B,C,E,F,W,T4,B9
+exclude = dags/airflow_venv,venv/, airflow_venv/,vsh,.git,__pycache__,docs/source/conf.py,old,build,dist,.log,/logs
