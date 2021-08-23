@@ -5,6 +5,18 @@
 - install docker compose
 
 
+## Code linting and Stying - Pre commit ##
+1. Install pre-commit app:
+
+  For Linux/Windows `pip3 install pre-commit`
+
+  For MAC-OS `brew install pre-commit`
+
+2. Run a pre commit initialization command (n the same dir where the code was cloned): `pre-commit install`
+
+3. Run pre commit tests: `pre-commit run --all-files`
+
+
 ## Installation and initialization ##
 1. Clone the repo and navigate in to the working directory
 
@@ -62,14 +74,3 @@
   - Add variables to Docker containers `variables\docker-env-vars` file, the file is added to the gitignore process
   - Add variables that contain secrets and API keys to the `variables\docker-env-secrets` file, the file is added to the gitignore process
   - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to include it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
-
-## Code linting and Stying ##
-1. Install pre-commit app:
-
-  For Linux/Windows `pip3 install pre-commit`
-
-  For MAC-OS `brew install pre-commit`
-
-2. Run a pre commit initialization command (n the same dir where the code was cloned): `pre-commit install`
-
-3. Run pre commit tests: `pre-commit run --all-files`
