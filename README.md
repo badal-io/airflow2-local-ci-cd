@@ -50,15 +50,17 @@
 
 
 ## Commands for working inside a container: ###
-- To run unit tests under the tests/unit directory:
+- To run unit tests navigate to the `tests` directory and run the following command:
 `./airflow "test command"`
 
-example:`./airflow "pytest tests/unit"`
+    example:`./airflow "pytest tests/unit"`
 
-- To run integration tests under the tests/integration directory with a test config file:
-`./airflow "test command"`
+- To run integration tests with GCP navigate to the `tests` directory and run the following command:
+`./airflow-gcp "test command"`
 
-example:`./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`
+    example:`./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`
+
+  Note! You will be prompted for GCP authentification
 
 - To spin up an Ops container with Bash session:
 `./airflow bash`
