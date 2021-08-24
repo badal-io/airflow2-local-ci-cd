@@ -20,7 +20,7 @@ x-airflow-common:
     - ./helpers:/opt/airflow/helpers
     - ./tests:/opt/airflow/tests
     #- ~/.config/gcloud:/home/airflow/.config/gcloud
-  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
       condition: service_healthy
@@ -79,6 +79,7 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+    user: "0:${AIRFLOW_GID:-0}"
 
 volumes:
   postgres-db-volume:
