@@ -18,7 +18,7 @@
 
   - For Linux/Mac run:  `./helpers/scripts/init_linux-macos.sh`
 
-  - For Windows:  right click on the `init_windows.bat` file  ---> run as administrator
+  - For Windows:  right click on the `init_windows.bat` file  ---> Run as administrator
 
 
 ## Commands for operations & maintenance: ##
