@@ -8,6 +8,7 @@ substitutions:
   _COMPOSER_CONF_FILE: composer-config
   #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in Dockerfile-CI
   _PYTHON_VERSION: '3.8'
+
 steps:
 # - Verify Composer's env name.
   # [START env name]
