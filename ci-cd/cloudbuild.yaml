@@ -1,12 +1,12 @@
 # - Airflow Env variables.
 substitutions:
-  #_COMPOSER_ENV_NAME: test-env  # The var is declared in GCP triggers.
+  #_COMPOSER_ENV_NAME: test-env  # The var is declared in GCP cloudbuild triggers.
   _GCP_PROJECT_ID: badal-sandbox-309813
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
   _COMPOSER_VARS_FILE: composer-vars
   _COMPOSER_CONF_FILE: composer-config
-  #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in Dockerfile-CI
+  #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in docker/Dockerfile-CI
   _PYTHON_VERSION: '3.8'
 
 steps:
@@ -18,9 +18,9 @@ steps:
     args:
       - '-c'
       - |
-        echo "***********************"
+        echo "*******************"
         echo "$_COMPOSER_ENV_NAME"
-        echo "***********************"
+        echo "*******************"
     id: 'env name'
   # [END env name]
 
@@ -122,7 +122,7 @@ steps:
           pre-commit install
           pre-commit run --all-files
         else
-          echo "***************************** Style&Lint code******************************"
+          echo "***************************** Style & Lint code ***************************"
           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
           echo "***************************************************************************"
         fi
