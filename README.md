@@ -70,7 +70,7 @@
 
 
 ## Dependencies to solve ##
-  - Add your Py dependencies to `requirements-airflow.txt`
+  - Add your Py dependencies to the `docker/requirements-airflow.txt` file
   - Adapt and install DAGs into the `dags` folder
   - Adapt and install Plugins into the `plugins` folder
   - Add variables to Airflow:  `variables\airflow-vars.json` file
