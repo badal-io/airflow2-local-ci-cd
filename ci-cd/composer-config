@@ -1,0 +1,2 @@
+core-print_stats_interval=true,
+core-dags_are_paused_at_creation=false

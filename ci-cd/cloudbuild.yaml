@@ -1,0 +1,199 @@
+# - Airflow Env variables.
+substitutions:
+  #_COMPOSER_ENV_NAME: test-env  # The var is declared in GCP triggers.
+  _GCP_PROJECT_ID: badal-sandbox-309813
+  _COMPOSER_REGION: us-central1
+  _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
+  _COMPOSER_VARS_FILE: composer-vars
+  _COMPOSER_CONF_FILE: composer-config
+  #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in Dockerfile-CI
+  _PYTHON_VERSION: '3.8'
+steps:
+# - Verify Composer's env name.
+  # [START env name]
+  - name: 'gcr.io/cloud-builders/docker'
+    waitFor: ['-']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "***********************"
+        echo "$_COMPOSER_ENV_NAME"
+        echo "***********************"
+    id: 'env name'
+  # [END env name]
+
+# - Pull the existing Airflow build from GCR if any.
+  # [START pull-airflow2]
+  - name: 'gcr.io/cloud-builders/docker'
+    waitFor: ['-']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "${_COMPOSER_ENV_NAME}" = "test-env" ]
+        then
+          docker pull gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME} || exit 0
+        else
+          echo "***************************** pull-airflow2 *******************************"
+          echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+          echo "***************************************************************************"
+        fi
+    id: 'pull-airflow2'
+  # [END pull-airflow2]
+
+# - Build a new Airflow2 image with cache from existing.
+  # [START build-airflow2]
+  - name: 'gcr.io/cloud-builders/docker'
+    waitFor: ['-']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "${_COMPOSER_ENV_NAME}" = "test-env" ]
+        then
+            docker build -t gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME} \
+            --build-arg PYTHON_VERSION=${_PYTHON_VERSION} \
+            --cache-from gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME} \
+            -f docker/Dockerfile-CI .
+        else
+          echo "***************************** build-airflow2*******************************"
+          echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+          echo "***************************************************************************"
+        fi
+    #env:
+    #  - 'FOO=$_BAR'
+    dir: '.'
+    id: 'build-airflow2'
+  # [END build-airflow2]
+
+# - Unit tests.
+  # [START unit-test]
+  - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
+    waitFor: ['build-airflow2']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "${_COMPOSER_ENV_NAME}" = "test-env" ]
+        then
+          pytest tests/unit
+          py3clean tests/unit
+        else
+          echo "***************************** unit-test *******************************"
+          echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+          echo "***************************************************************************"
+        fi
+    id: "unit-test"
+  # [END unit-test]
+
+# - Integration tests.
+  # [START int-test]
+  - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
+    waitFor: ['unit-test']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "${_COMPOSER_ENV_NAME}" = "test-env" ]
+        then
+          pytest --tc-file ./tests/integration/config.ini -v ./tests/integration
+          py3clean ./tests/integration
+        else
+          echo "***************************** integration-test ****************************"
+          echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+          echo "***************************************************************************"
+        fi
+    id: "int-test"
+  # [END int-test]
+
+# - Style&Lint code.
+  # [START lint-code]
+  - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
+    waitFor: ['int-test']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "${_COMPOSER_ENV_NAME}" = "test-env" ]
+        then
+          pip install pre-commit
+          pre-commit install
+          pre-commit run --all-files
+        else
+          echo "***************************** Style&Lint code******************************"
+          echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+          echo "***************************************************************************"
+        fi
+    dir: '.'
+    id: 'lint-code'
+  # [END lint-code]
+
+# - Update variables.
+  # [START update-vars]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    waitFor: ['lint-code']
+    entrypoint: 'bash'
+    args: [
+            'composer_vars_update.sh',
+            '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
+            '--update-env-variables', '../../variables/${_COMPOSER_VARS_FILE}'
+          ]
+    dir: './helpers/scripts'
+    id: 'update-vars'
+  # [END update-vars]
+
+# - Update airflow config parameters.
+  # [START update-config]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    waitFor: ['update-vars']
+    entrypoint: 'bash'
+    args: [
+            'composer_conf_update.sh',
+            '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
+            '--update-airflow-configs', '../../ci-cd/${_COMPOSER_CONF_FILE}'
+          ]
+    dir: './helpers/scripts'
+    id: 'update-config'
+  # [END update-config]
+
+# - Update PyPi packages.
+  # [START update-PyPi]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    waitFor: ['update-config']
+    entrypoint: 'bash'
+    args: [
+            'composer_py_update.sh',
+            '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
+            '--update-pypi-packages-from-file', '../../docker/requirements-airflow.txt'
+          ]
+    dir: './helpers/scripts'
+    id: 'update-PyPi'
+  # [END update-PyPi]
+
+# - Sync plugins to GCS plugins directory.
+  # [START sync-plugins]
+  - name: gcr.io/cloud-builders/gsutil
+    waitFor: ['update-PyPi']
+    args: [
+            'rsync', '-r', '-c', '-d',
+            'plugins/',
+            'gs://${_COMPOSER_INPUT_BUCKET}/plugins'
+          ]
+    id: 'sync-plugins'
+  # [END sync-plugins]
+
+# - Sync DAGs to GCS DAGs directory.
+  # [START sync-dags]
+  - name: gcr.io/cloud-builders/gsutil
+    waitFor: ['sync-plugins']
+    args: [
+            'rsync', '-r', '-c', '-d',
+            'dags/',
+            'gs://${_COMPOSER_INPUT_BUCKET}/dags'
+          ]
+    id: 'sync-dags'
+  # [END sync-dags]
+timeout: 3600s
+images:
+  - 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
