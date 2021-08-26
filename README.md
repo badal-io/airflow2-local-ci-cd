@@ -1,8 +1,22 @@
 
-## Dependencies & prerequisities on a local machine ##
-- install the latest available version of docker: https://docs.docker.com/get-docker/
+## Dependencies & prerequisities on a local machine
+- For Windows 10 OS:
+  1. install WSL first (complete all steps): https://docs.microsoft.com/en-us/windows/wsl/install-win10
+  2. install Linux distribution of choice from Microsoft Store
 
-- install the latest available version of docker compose: https://docs.docker.com/compose/install/
+- Install the latest available version of docker: https://docs.docker.com/get-docker/
+
+- Install the latest available version of docker compose: https://docs.docker.com/compose/install/
+
+- Disable Docker Compose V2 using the CLI, run: `docker-compose disable-v2`
+
+
+## Recommended dev environment to use:
+  - OS:            : MAC OS, Linux Ubuntu/Debian
+
+  - Development env: Visual Studio Code (VS Code)
+
+  - Terminal client: Visual Studio Code terminal
 
 
 ## Clone the repo & navigate to the directory
@@ -28,8 +42,6 @@
 2. Run the following commands:
 
   - For Linux/Mac run:  `./helpers/scripts/init_linux-macos.sh`
-
-  - For Windows:  right click on the `init_windows.bat` file  ---> run as administrator
 
 
 ## Commands for operations & maintenance: ##
