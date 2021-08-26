@@ -1,14 +1,25 @@
 
 ## Dependencies & prerequisities on a local machine ##
-- install docker: https://docs.docker.com/get-docker/
+- install the latest available version of docker: https://docs.docker.com/get-docker/
 
-- install docker compose: https://docs.docker.com/compose/install/
+- install the latest available version of docker compose: https://docs.docker.com/compose/install/
+
 
 ## Clone the repo & navigate to the directory
 
 `git clone https://github.com/badal-io/airflow2-local.git`
 
 `cd airflow2-local`
+
+
+## Dependencies to solve before you go ##
+  - Add your Py dependencies to the `docker/requirements-airflow.txt` file
+  - Adapt and install DAGs into the `dags` folder
+  - Adapt and install Plugins into the `plugins` folder
+  - Add variables to Airflow:  `variables\airflow-vars.json` file
+  - Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
+  - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process
+  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
 
 ## Installation and initialization ##
@@ -67,16 +78,6 @@
 ## GCP Project ID for GCP Connection ###
 - Set the projet-id varibale in the `variables/docker-env-vars` file:
 `GCP_PROJECT_ID='<project-id here>'`
-
-
-## Dependencies to solve ##
-  - Add your Py dependencies to the `docker/requirements-airflow.txt` file
-  - Adapt and install DAGs into the `dags` folder
-  - Adapt and install Plugins into the `plugins` folder
-  - Add variables to Airflow:  `variables\airflow-vars.json` file
-  - Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
-  - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process
-  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to include it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
 
 ## Code linting and stying - Pre commit ##
