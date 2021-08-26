@@ -46,7 +46,7 @@ steps:
 # - Build a new Airflow2 image with cache from existing.
   # [START build-airflow2]
   - name: 'gcr.io/cloud-builders/docker'
-    waitFor: ['-']
+    waitFor: ['pull-airflow2']
     entrypoint: 'bash'
     args:
       - '-c'
