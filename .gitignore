@@ -2,3 +2,4 @@ logs*
 *keys.json*
 *docker-env-secrets*
 *__pycache__*
+*dev_scripts*
