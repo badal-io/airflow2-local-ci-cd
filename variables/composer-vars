@@ -1,2 +1,0 @@
-SENDGRID_MAIL_FROM=example_sender,
-AIRFLOW_VAR_FOO=BAR
