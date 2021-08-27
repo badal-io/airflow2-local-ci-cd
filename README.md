@@ -10,19 +10,19 @@
 ## 2. Dependencies & prerequisities on a local PC:
 ### For Linux:
 
-  - 2.1 Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
+  - 2.1  Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
-  - 2.2 Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
+  - 2.2  Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
 
-  - 2.3 Disable docker compose v2 experimental features via the CLI, run: `docker-  compose disable-v2`
+  - 2.3  Disable docker compose v2 experimental features via the CLI, run: `docker-  compose disable-v2`
 
-  - 2.4 Clone the repo & navigate to the directory:
+  - 2.4  Clone the repo & navigate to the directory:
 
   `git clone https://github.com/badal-io/airflow2-local.git`
 
   `cd airflow2-local`
 
-  - 2.5 Proceed with the installation and initialization steps (section #3 and #4)
+  - 2.5  Proceed with the installation and initialization steps (section #3 and #4)
 
 
 
