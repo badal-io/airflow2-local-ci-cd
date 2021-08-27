@@ -19,7 +19,7 @@ x-airflow-common:
     - ./data:/opt/airflow/data
     - ./helpers:/opt/airflow/helpers
     - ./tests:/opt/airflow/tests
-    #- ~/.config/gcloud:/home/airflow/.config/gcloud
+    - ~/.config/gcloud:/home/airflow/.config/gcloud  # GCP auth
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
@@ -68,7 +68,7 @@ services:
 
   airflow-helper:
     <<: *airflow-common
-    entrypoint: ./helpers/scripts/entrypoint.sh
+    entrypoint: ["sh", "/opt/airflow/helpers/scripts/entrypoint.sh"]
 
   airflow-init:
     <<: *airflow-common
