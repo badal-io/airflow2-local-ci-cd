@@ -8,7 +8,7 @@
 
 
 ## 2. Dependencies & prerequisities on a local PC:
-### For Linux
+### For Linux:
 
   2.1 Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
@@ -44,7 +44,7 @@
 
 
 
-## For Windows 10 OS:
+### For Windows 10 OS:
 
   2.1 Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
@@ -122,7 +122,7 @@
 
 
 
-### 5. Commands for operations & maintenance:
+## 5. Commands for operations & maintenance:
 
   - To stop all Airflow containers (via a new terminal session):
 
