@@ -18,11 +18,11 @@
 
   - 2.4 &nbsp; Clone the repo & navigate to the directory:
 
-  `git clone https://github.com/badal-io/airflow2-local.git`
+       `git clone https://github.com/badal-io/airflow2-local.git`
 
-  `cd airflow2-local`
+       `cd airflow2-local`
 
-  - 2.5 &nbsp; Proceed with the installation and initialization steps (section #3 and #4)
+  - 2.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 ### For MAC OS:
 
@@ -32,13 +32,13 @@
 
   - 2.3 &nbsp; Clone the repo
 
-    `git clone https://github.com/badal-io/airflow2-local.git`
+       `git clone https://github.com/badal-io/airflow2-local.git`
 
   - 2.4 &nbsp; Open the folder with `Visual Studio Code` (open folder)
 
   - 2.5 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
 
-  - 2.6 &nbsp; Proceed with the installation and initialization steps (section #3 and #4)
+  - 2.6 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 ### For Windows10 OS:
 
@@ -48,21 +48,23 @@
 
   - 2.3 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-  - 2.4 &nbsp; Launch the Linux subsystem in Windows `(Start --> <Subsystem Name>)`
+  - 2.4 &nbsp; Launch the Linux subsystem in Windows (<strong> Start --> <Subsystem Name> </strong>)
 
   - 2.5 &nbsp; Always switch to `root` user and navigate back to `/home`
 
   - 2.6 &nbsp; Clone the repo & open the folder with Visual Studio Code (open folder);
 
-    `git clone https://github.com/badal-io/airflow2-local.git`
+       `git clone https://github.com/badal-io/airflow2-local.git`
 
   - 2.7 &nbsp; Run the docker istallatino script `./helpers/scripts/docker-wls.sh`
 
-  - 2.8 &nbsp; Open Setting sin Docker Desktop, go to `Resources --- WLS Integration - Toggle the the correct subsystem`
+  - 2.8 &nbsp; Open Setting sin Docker Desktop, go to <strong> Resources --> WLS Integration </strong> and toggle the   `Ubuntu` subsytem
 
   - 2.9 &nbsp; Open Visual Studio Code and install a new plagin `Remote WLS`
 
-  - 2.10 &nbsp; Once finished, you now see a WSL indicator in the bottom left corner, click on it and choose `New WSL window using Distro`
+  - 2.10 &nbsp; Once finished, you now see a WSL indicator in the bottom left corner, click on it and choose
+
+      `New WSL window using Distro`
 
   - 2.11 &nbsp; Choose the subsytem frm the list and conenct.
 
@@ -105,15 +107,15 @@
 
   - 4.1 Open a termianl Run the following commands (for the first time only):
 
-     `./helpers/scripts/init_airflow.sh`
+      `./helpers/scripts/init_airflow.sh`
 
   - 4.2 Start Airflow and all services:
 
-     `docker-compose up`
+      `docker-compose up`
 
   - 4.3 Authentificate for GCP services, run the follwing script:
 
-     `./helpers/scripts/gcp-auth.sh`
+      `./helpers/scripts/gcp-auth.sh`
 
   - 4.4  <strong> Airflow 2 local dev is ready!!! </strong>
 
@@ -123,13 +125,13 @@
 
   - To stop all Airflow containers (via a new terminal session):
 
-   `docker-compose down`
+    `docker-compose down`
 
   - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
 
-   `docker-compose down`
+    `docker-compose down`
 
-   `docker-compose up --build`
+    `docker-compose up --build`
 
   - To cleaning up all containers and remove database:
 
@@ -143,13 +145,17 @@
 
      `./airflow "test command"`
 
-    example: <strong> `cd tests && ./airflow "pytest tests/unit"` </strong>
+    example:
+
+     <strong> `cd tests && ./airflow "pytest tests/unit"` </strong>
 
   - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
      `./airflow "test command"`
 
-    example: <strong> `cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`  </strong>
+    example:
+
+     <strong> `cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`  </strong>
 
   - To spin up an Ops container with Bash session:
 
@@ -178,7 +184,8 @@
     - For MAC-OS `brew install pre-commit`
 
 
-  - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned): `pre-commit install`
+  - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned):
 
+    `pre-commit install`
 
-  - 7.3 Run pre-commit tests: `pre-commit run --all-files`
+  - 7.3 Run pre-commit tests:     `pre-commit run --all-files`
