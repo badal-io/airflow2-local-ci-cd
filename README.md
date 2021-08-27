@@ -8,7 +8,7 @@
 
 - Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
 
-- Disable Docker Compose V2 using the CLI, run: `docker-compose disable-v2`
+- Disable docker compose v2 exxperimental features via the CLI, run: `docker-compose disable-v2`
 
 
 ### Recommended dev environment to use:
