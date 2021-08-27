@@ -14,7 +14,7 @@
 
   - 2.2 &nbsp; Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
 
-  - 2.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run:  <code> docker-compose disable-v2 </code>
+  - 2.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
   - 2.4 &nbsp; Clone the repo & navigate to the directory:
 
@@ -91,91 +91,94 @@
 
   - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
-
+<br/>
 
 ### 3.2 GCP Project ID for GCP Connection
 
-- Set the projet-id varibale in the `variables/docker-env-vars` file:
+  - Set the projet-id varibale in the `variables/docker-env-vars` file:
 
-   `GCP_PROJECT_ID='<project-id here>'`
+     `GCP_PROJECT_ID='<project-id here>'`
 
-
+<br/>
 
 ## 4. Initialization and run
 
-   4.1 Open a termianl Run the following commands (for the first time only):
-    `./helpers/scripts/init_linux-macos.sh`
+  - 4.1 Open a termianl Run the following commands (for the first time only):
 
-   4.2 Start Airflow and all services:
+     `./helpers/scripts/init_airflow.sh`
+
+  - 4.2 Start Airflow and all services:
 
      `docker-compose up`
 
-   4.3 Authentificate for GCP services, run the follwing script:
+  - 4.3 Authentificate for GCP services, run the follwing script:
 
      `./helpers/scripts/gcp-auth.sh`
 
-   4.4  `Airflow 2 local dev` is ready!!!
+  - 4.4  <strong> Airflow 2 local dev is ready!!! </strong>
 
-
+<br/>
 
 ## 5. Commands for operations & maintenance:
 
-- To stop all Airflow containers (via a new terminal session):
+  - To stop all Airflow containers (via a new terminal session):
 
    `docker-compose down`
 
-- To rebuild containers (if changes are aplied on dockerfile/docker-compose):
+  - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
 
-  `docker-compose down`
+   `docker-compose down`
 
-  `docker-compose up --build`
+   `docker-compose up --build`
 
-- To cleaning up all containers and remove database:
+  - To cleaning up all containers and remove database:
 
-  `docker-compose down --volumes --rmi all`
+    `docker-compose down --volumes --rmi all`
 
-
+<br/>
 
 ## 6. Commands for working inside a container:
 
-- To run unit tests navigate to the `tests` directory and run the following command:
+  - To run unit tests navigate to the `tests` directory and run the following command:
 
-  `./airflow "test command"`
+     `./airflow "test command"`
 
-    example: `cd tests && ./airflow "pytest tests/unit"`
+    example: <strong> `cd tests && ./airflow "pytest tests/unit"` </strong>
 
-- To run integration tests with GCP navigate to the `tests` directory and run the following command:
+  - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
-  `./airflow "test command"`
+     `./airflow "test command"`
 
-    example: `cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`
+    example: <strong> `cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`  </strong>
 
-- To spin up an Ops container with Bash session:
+  - To spin up an Ops container with Bash session:
 
-  `./tests/airflow bash`
+     `./tests/airflow bash`
 
-- To print Airflow info:
+  - To print Airflow info:
 
-  `./tests/airflow info`
+     `./tests/airflow info`
 
-- To lauch a python session in Airflow:
+  - To lauch a python session in Airflow:
 
-  `./tests/airflow python`
+     `./tests/airflow python`
 
-- To access the Airflow Web UI:
+  - To access the Airflow Web UI:
 
-  `localhost:8080`
+     `localhost:8080`
 
-
+<br/>
 
 ## 7. Code linting and stying - Pre commit ##
 
-   7.1 Install pre-commit app:
+  - 7.1 Install pre-commit app:
 
-   For Linux/Windows `pip3 install pre-commit`
+    - For Linux/Windows `pip3 install pre-commit`
 
-   For MAC-OS `brew install pre-commit`
+    - For MAC-OS `brew install pre-commit`
 
-   7.2 Run a pre commit initialization command (inside the same dir where the code was cloned): `pre-commit install`
 
-   7.3 Run pre-commit tests: `pre-commit run --all-files`
+  - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned): `pre-commit install`
+
+
+  - 7.3 Run pre-commit tests: `pre-commit run --all-files`
