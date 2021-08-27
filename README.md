@@ -1,20 +1,20 @@
 
 ## 1. Recommended dev tools to use:
 
-- OS: : `MAC OS, Linux Ubuntu/Debian`
+- OS: : `MAC OS, Linux Ubuntu`
 - Development env: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
 <br/>
 
 ## 2. Dependencies & prerequisities on a local PC:
-### For Linux:
+### For Linux OS:
 
   - 2.1 &nbsp; Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
   - 2.2 &nbsp; Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
 
-  - 2.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
+  - 2.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run:  <code> docker-compose disable-v2 </code>
 
   - 2.4 &nbsp; Clone the repo & navigate to the directory:
 
@@ -26,70 +26,70 @@
 
 ### For MAC OS:
 
-  - 2.1 Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
+  - 2.1 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-  - 2.2 Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
+  - 2.2 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
-  - 2.3 Clone the repo
-
-    `git clone https://github.com/badal-io/airflow2-local.git`
-
-  - 2.4 Open the folder with `Visual Studio Code` (open folder)
-
-  - 2.5 Open a terminal window `(Menu Terminal -- New Terminal)`
-
-  2.6 Proceed with the installation and initialization steps (section #3 and #4)
-
-### For Windows 10 OS:
-
-  2.1 Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
-
-  2.2 Install Linux distribution of choice from the Microsoft Store (Ubuntu 20.04, for example)
-
-  2.3 Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
-
-  2.4 Launch the Linux subsystem in Windows `(Start --> <Subsystem Name>)`
-
-  2.5 Always switch to `root` user and navigate back to `/home`
-
-  2.6 Clone the repo & open the folder with Visual Studio Code (open folder);
+  - 2.3 &nbsp; Clone the repo
 
     `git clone https://github.com/badal-io/airflow2-local.git`
 
-  2.7 Run the docker istallatino script `./helpers/scripts/docker-wls.sh`
+  - 2.4 &nbsp; Open the folder with `Visual Studio Code` (open folder)
 
-  2.8 Open Setting sin Docker Desktop, go to `Resources --- WLS Integration - Toggle the the correct subsystem`
+  - 2.5 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
 
-  2.9 Open Visual Studio Code and install a new plagin `Remote WLS`
+  - 2.6 &nbsp; Proceed with the installation and initialization steps (section #3 and #4)
 
-  2.10 Once finished, you now see a WSL indicator in the bottom left corner, click on it and choose `New WSL window using Distro`
+### For Windows10 OS:
 
-  2.11 Choose the subsytem frm the list and conenct.
+  - 2.1 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
-  2.12 Once connected, open the (cloned repo) folder on the same VCS window (open folder)
+  - 2.2 &nbsp; Install `Linux Ubuntu 20.04` distribution from the Microsoft Store
 
-  2.13 Open a terminal window `(Menu Terminal -- New Terminal)`
+  - 2.3 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-  2.14 Proceed with the installation and initialization steps (section #3 and #4)
+  - 2.4 &nbsp; Launch the Linux subsystem in Windows `(Start --> <Subsystem Name>)`
+
+  - 2.5 &nbsp; Always switch to `root` user and navigate back to `/home`
+
+  - 2.6 &nbsp; Clone the repo & open the folder with Visual Studio Code (open folder);
+
+    `git clone https://github.com/badal-io/airflow2-local.git`
+
+  - 2.7 &nbsp; Run the docker istallatino script `./helpers/scripts/docker-wls.sh`
+
+  - 2.8 &nbsp; Open Setting sin Docker Desktop, go to `Resources --- WLS Integration - Toggle the the correct subsystem`
+
+  - 2.9 &nbsp; Open Visual Studio Code and install a new plagin `Remote WLS`
+
+  - 2.10 &nbsp; Once finished, you now see a WSL indicator in the bottom left corner, click on it and choose `New WSL window using Distro`
+
+  - 2.11 &nbsp; Choose the subsytem frm the list and conenct.
+
+  - 2.12 &nbsp; Once connected, open the (cloned repo) folder on the same VCS window (open folder)
+
+  - 2.13 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
+
+  - 2.14 &nbsp; Proceed with the installation and initialization steps (section #3 and #4)
 
 <br/>
 
 ## 3. Dependencies to solve before you go
    ### 3.1
 
-- Add your Py dependencies to the `docker/requirements-airflow.txt` file
+  - Add your Py dependencies to the `docker/requirements-airflow.txt` file
 
-- Adapt and install DAGs into the `dags` folder
+  - Adapt and install DAGs into the `dags` folder
 
-- Adapt and install Plugins into the `plugins` folder
+  - Adapt and install Plugins into the `plugins` folder
 
-- Add variables to Airflow: `variables\airflow-vars.json` file
+  - Add variables to Airflow: `variables\airflow-vars.json` file
 
-- Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
+  - Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
 
-- Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process
+  - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process
 
-- If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
+  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
 
 
