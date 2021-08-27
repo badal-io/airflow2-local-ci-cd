@@ -6,6 +6,7 @@
 - Terminal client: `Visual Studio Code terminal`
 
 
+
 ## 2. Dependencies & prerequisities on a local PC:
 ### For Linux
 
@@ -24,6 +25,7 @@
   2.5 Proceed with the installation and initialization steps (section #3 and #4)
 
 
+
 ### For MAC OS:
 
   2.1 Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
@@ -39,6 +41,7 @@
   2.5 Open a terminal window `(Menu Terminal -- New Terminal)`
 
   2.6 Proceed with the installation and initialization steps (section #3 and #4)
+
 
 
 ## For Windows 10 OS:
@@ -74,6 +77,7 @@
   2.14 Proceed with the installation and initialization steps (section #3 and #4)
 
 
+
 ## 3. Dependencies to solve before you go
    ### 3.1
 
@@ -92,11 +96,13 @@
   - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
 
+
 ### 3.2 GCP Project ID for GCP Connection
 
   - Set the projet-id varibale in the `variables/docker-env-vars` file:
 
    `GCP_PROJECT_ID='<project-id here>'`
+
 
 
 ## 4. Initialization and run
@@ -115,6 +121,7 @@
    4.4  `Airflow 2 local dev` is ready!!!
 
 
+
 ### 5. Commands for operations & maintenance:
 
   - To stop all Airflow containers (via a new terminal session):
@@ -130,6 +137,7 @@
   - To cleaning up all containers and remove database:
 
   `docker-compose down --volumes --rmi all`
+
 
 
 ## 6. Commands for working inside a container:
@@ -161,6 +169,7 @@
   - To access the Airflow Web UI:
 
   `localhost:8080`
+
 
 
 ## 7. Code linting and stying - Pre commit ##
