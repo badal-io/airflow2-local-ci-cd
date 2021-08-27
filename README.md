@@ -30,7 +30,7 @@
 
   - 2.2 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
-  - 2.3 &nbsp; Clone the repo
+  - 2.3 &nbsp; Clone the repo:
 
        `git clone https://github.com/badal-io/airflow2-local.git`
 
@@ -52,7 +52,7 @@
 
   - 2.5 &nbsp; Always switch to `root` user and navigate back to `/home`
 
-  - 2.6 &nbsp; Clone the repo & open the folder with Visual Studio Code (open folder);
+  - 2.6 &nbsp; Clone the repo & open the folder with Visual Studio Code (open folder):
 
        `git clone https://github.com/badal-io/airflow2-local.git`
 
