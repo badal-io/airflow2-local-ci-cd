@@ -20,6 +20,7 @@ x-airflow-common:
     - ./helpers:/opt/airflow/helpers
     - ./tests:/opt/airflow/tests
     - ~/.config/gcloud:/home/airflow/.config/gcloud  # GCP auth
+    - ~/.config/gcloud:/root/.config/gcloud  # GCP auth for
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
@@ -65,6 +66,7 @@ services:
   airflow-ops:
     <<: *airflow-common
     command: version
+    user: "0:${AIRFLOW_GID:-0}"
 
   airflow-helper:
     <<: *airflow-common
