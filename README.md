@@ -1,5 +1,5 @@
 
-1. ### Recommended dev tools to use:
+1. #Recommended dev tools to use:
   - OS:            : `MAC OS, Linux Ubuntu/Debian`
 
   - Development env: `Visual Studio Code (VS Code)`
@@ -7,9 +7,9 @@
   - Terminal client: `Visual Studio Code terminal`
 
 
-2. ### Dependencies & prerequisities on a local PC:
+2. # Dependencies & prerequisities on a local PC:
 
-    For Linux
+    ##For Linux
 
     2.1 Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
