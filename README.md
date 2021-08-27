@@ -5,26 +5,24 @@
 - Development env: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
-<br/><br/>
+<br/>
 
 ## 2. Dependencies & prerequisities on a local PC:
 ### For Linux:
 
-  - 2.1 "ensp" Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
+  - 2.1 &nbsp.. Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
-  - 2.2 "ensp" Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
+  - 2.2 &nbsp.. Install the latest available version of `Docker compose`: https://docs.docker.com/compose/install/
 
-  - 2.3 "ensp" Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
+  - 2.3 &nbsp.. Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
-  - 2.4 "ensp" Clone the repo & navigate to the directory:
+  - 2.4 &nbsp.. Clone the repo & navigate to the directory:
 
   `git clone https://github.com/badal-io/airflow2-local.git`
 
   `cd airflow2-local`
 
-  - 2.5 "ensp" Proceed with the installation and initialization steps (section #3 and #4)
-
-<br/>
+  - 2.5 &nbsp.. Proceed with the installation and initialization steps (section #3 and #4)
 
 ### For MAC OS:
 
@@ -41,8 +39,6 @@
   - 2.5 Open a terminal window `(Menu Terminal -- New Terminal)`
 
   2.6 Proceed with the installation and initialization steps (section #3 and #4)
-
-<br/>
 
 ### For Windows 10 OS:
 
@@ -76,7 +72,7 @@
 
   2.14 Proceed with the installation and initialization steps (section #3 and #4)
 
-
+<br/>
 
 ## 3. Dependencies to solve before you go
    ### 3.1
