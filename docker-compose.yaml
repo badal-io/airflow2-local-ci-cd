@@ -19,8 +19,8 @@ x-airflow-common:
     - ./data:/opt/airflow/data
     - ./helpers:/opt/airflow/helpers
     - ./tests:/opt/airflow/tests
-    - ~/.config/gcloud:/home/airflow/.config/gcloud  # GCP auth
-    - ~/.config/gcloud:/root/.config/gcloud  # GCP auth for
+    - ~/.config/gcloud:/home/airflow/.config/gcloud  # GCP auth keys
+    - ~/.config/gcloud:/root/.config/gcloud  # GCP auth keys
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
