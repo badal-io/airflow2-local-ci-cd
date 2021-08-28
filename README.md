@@ -1,7 +1,7 @@
 
 ## 1. Recommended dev tools to use:
 
-- OS: : `MAC OS, Linux Ubuntu`
+- OS: : `MAC OS, Linux Ubuntu` (Windows requires Windows Subsystem for Linux)
 - Development env: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
@@ -16,11 +16,7 @@
 
   - 2.1.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
-  - 2.1.4 &nbsp; Clone the repo & navigate to the directory:
-
-       `git clone https://github.com/badal-io/airflow2-local.git`
-
-       `cd airflow2-local`
+c
 
   - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
@@ -34,45 +30,43 @@
 
        `git clone https://github.com/badal-io/airflow2-local.git`
 
-  - 2.2.4 &nbsp; Open the folder with `Visual Studio Code` (open folder)
+  - 2.2.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder)
 
   - 2.2.5 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
 
   - 2.2.6 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
-### 2.3 &nbsp; For Windows10 OS:
+### 2.3 &nbsp; For Windows 10 OS:
 
-  - 2.3.1 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
-
-  - 2.3.2 &nbsp; Install `Linux Ubuntu 20.04` distribution from the Microsoft Store
-
-  - 2.3.3 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
-
-  - 2.3.4 &nbsp; Launch the Linux subsystem in Windows (<strong> Start --> <Subsystem Name> </strong>)
-
-  - 2.3.5 &nbsp; Always switch to `root` user and navigate back to `/home`
-
-  - 2.3.6 &nbsp; Clone the repo & open the folder with Visual Studio Code (open folder):
+  - 2.3.1 &nbsp; Clone the repo for Airflow 2:
 
        `git clone https://github.com/badal-io/airflow2-local.git`
 
-  - 2.3.7 &nbsp; Run the docker istallatino script `./helpers/scripts/docker-wls.sh`
+  - 2.3.2 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
-  - 2.3.8 &nbsp; Open Setting sin Docker Desktop, go to <strong> Resources --> WLS Integration </strong> and toggle the   `Ubuntu` subsytem
+  - 2.3.2 &nbsp; Install `Linux Ubuntu` distribution from the Microsoft Store: https://aka.ms/wslstore (this step is part of the prevous step)
 
-  - 2.3.9 &nbsp; Open Visual Studio Code and install a new plagin `Remote WLS`
+  - 2.3.3 &nbsp; Launch WLS Ubuntu and create a default unix username (`airflow`) & password (`airflow`) when prompted
 
-  - 2.3.10 &nbsp; Once finished, you now see a WSL indicator in the bottom left corner, click on it and choose
+  - 2.3.4 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-      `New WSL window using Distro`
+  - 2.3.5 &nbsp; Launch `Docker Desktop`, go to <strong> Settings - Resources - WSL INTEGRATION - toggle Ubuntu - click the Apply & Restart button  </strong>
 
-  - 2.3.11 &nbsp; Choose the subsytem frm the list and conenct.
+  - Open a comamnd line and excute the follwign command to make sure taht Ubuntu has been set as a default WSL:
 
-  - 2.3.12 &nbsp; Once connected, open the (cloned repo) folder on the same VCS window (open folder)
+       `wsl --setdefault Ubuntu`
 
-  - 2.3.13 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
+  - 2.3.6 &nbsp; Install (if not already installed ) and launch <strong> Visual Studio Code </strong>
 
-  - 2.3.14 &nbsp; Proceed with the installation and initialization steps (section #3 and #4)
+  - 2.3.7 &nbsp; From the VS code extension tab, search and install a new plugin `Remote WLS`
+
+  - 2.3.8 &nbsp; On  <strong> Visual Studio Code </strong> you now see a green WSL indicator in the bottom left corner, click on it and choose <strong> Open Folder in WSL </strong>. Open the folder with Airflow.
+
+  - 2.3.9 &nbsp; Open a terminal session in VS code `(Menu Terminal -- New Terminal)` and run the WLS docker installation script:
+
+       `chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh`
+
+  - 2.3.10 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 <br/>
 
@@ -107,7 +101,7 @@
 
   - 4.1 Open a termianl Run the following commands (for the first time only):
 
-      `./helpers/scripts/init_airflow.sh`
+      `./helpers/scripts/init_airflow.sh`   (for Windows WSL use `sudo` before the command)
 
   - 4.2 Start Airflow and all services:
 
