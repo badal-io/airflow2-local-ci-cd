@@ -38,35 +38,37 @@ c
 
 ### 2.3 &nbsp; For Windows 10 OS:
 
-  - 2.3.1 &nbsp; Clone the repo for Airflow 2:
-
-       `git clone https://github.com/badal-io/airflow2-local.git`
-
-  - 2.3.2 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
+  - 2.3.1 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
   - 2.3.2 &nbsp; Install `Linux Ubuntu` distribution from the Microsoft Store: https://aka.ms/wslstore (this step is part of the prevous step)
 
   - 2.3.3 &nbsp; Launch WLS Ubuntu and create a default unix username (`airflow`) & password (`airflow`) when prompted
 
-  - 2.3.4 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
+  - 2.3.4 &nbsp; In the WSL terminal window go to `/home/airflow` and clone the repo:
 
-  - 2.3.5 &nbsp; Launch `Docker Desktop`, go to <strong> Settings - Resources - WSL INTEGRATION - toggle Ubuntu - click the Apply & Restart button  </strong>
+       `cd /home/airflow`
 
-  - Open a comamnd line and excute the follwign command to make sure taht Ubuntu has been set as a default WSL:
+       `git clone https://github.com/badal-io/airflow2-local.git`
+
+  - 2.3.5 &nbsp; On Windows 10, install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
+
+  - 2.3.6 &nbsp; Launch `Docker Desktop`, go to <strong> Settings - Resources - WSL INTEGRATION - toggle Ubuntu - click the Apply & Restart button  </strong>
+
+  - 2.3.7 &nbsp; Open a comamnd line and excute the follwign command to make sure taht Ubuntu has been set as a default WSL:
 
        `wsl --setdefault Ubuntu`
 
-  - 2.3.6 &nbsp; Install (if not already installed ) and launch <strong> Visual Studio Code </strong>
+  - 2.3.8 &nbsp; Install (if not already installed ) and launch <strong> Visual Studio Code </strong>
 
-  - 2.3.7 &nbsp; From the VS code extension tab, search and install a new plugin `Remote WLS`
+  - 2.3.9 &nbsp; From the VS code extension tab, search and install a new plugin `Remote WLS`
 
-  - 2.3.8 &nbsp; On  <strong> Visual Studio Code </strong> you now see a green WSL indicator in the bottom left corner, click on it and choose <strong> Open Folder in WSL </strong>. Open the folder with Airflow.
+  - 2.3.10 &nbsp; On  <strong> Visual Studio Code </strong> you now see a green WSL indicator in the bottom left corner, click on it and choose <strong> Open Folder in WSL </strong>. Windows will prompt you to selct a foled, prvide the follwing path to folder: <strong> ` \\wsl$\ubuntu\home\airflow ` </strong> and chose the folder with with Airflow code (<strong> airflo2-local-cicd </strong>)
 
-  - 2.3.9 &nbsp; Open a terminal session in VS code `(Menu Terminal -- New Terminal)` and run the WLS docker installation script:
+  - 2.3.11 &nbsp; Open a terminal session in VS code `(Menu Terminal -- New Terminal)` and run the WLS docker installation script:
 
        `chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh`
 
-  - 2.3.10 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
+  - 2.3.12 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 <br/>
 
