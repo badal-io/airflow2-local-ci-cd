@@ -1,7 +1,7 @@
 # - Airflow Env variables.
 substitutions:
-  #_COMPOSER_ENV_NAME: test-env  # The var is declared in GCP cloudbuild triggers.
-  _DEV_ENV_NAME: test_env
+  #_COMPOSER_ENV_NAME: test-env   # The var is declared in GCP cloudbuild triggers.
+  #_DEV_ENV_NAME: test_env        # This varibale must be declared to make sure "IF" conditions wor propoerly (declared in trigger)
   _GCP_PROJECT_ID: badal-sandbox-309813
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
