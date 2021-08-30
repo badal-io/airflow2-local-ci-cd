@@ -55,6 +55,9 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
         example: `_COMPOSER_INPUT_BUCKET = us-central1-test-env-4319fd69-bucket`
 
+    - <strong> _DEV_ENV_NAME =  <em> name of the dev environemt </em> </strong>
+
+        example: `_COMPOSER_INPUT_BUCKET = dev-env`
 
 ## Pipeline Steps:
 
@@ -92,3 +95,20 @@ The CI/CD pipeline automatically builds a container image from committed code, s
    - Sync dags from repo into Composer
 
 </br>
+
+
+## Pipeline Steps dependign on environment "_COMPOSER_ENV_NAME" :
+
+|      Step      	|               Description              	| Dev env 	| Prod env 	|
+|:--------------:	|:--------------------------------------:	|:-------:	|:--------:	|
+| env name       	| Print Env Name                         	|    Do   	|    Do    	|
+| pull-airflow2  	| Pull an existing docker image from GCR 	|    Do   	|   Skip   	|
+| build-airflow2 	| Build an image using cache             	|    Do   	|   Skip   	|
+| unit-test      	| Perform a unit test                    	|    Do   	|   Skip   	|
+| int-test       	| Perform an integration test            	|    Do   	|   Skip   	|
+| lint-code      	| Code listing and Styling               	|    Do   	|   Skip   	|
+| update-vars    	| Update vars in Composer                	|    Do   	|    Do    	|
+| update-config  	| Update Config in Composer              	|    Do   	|    Do    	|
+| update-PyPi    	| Update PyPi packages in Composer       	|    Do   	|    Do    	|
+| sync-plugins   	| Sync plugins with Composer GCS         	|    Do   	|    Do    	|
+| sync-dags      	| Sync tags with Composer GCS            	|    Do   	|    Do    	|
