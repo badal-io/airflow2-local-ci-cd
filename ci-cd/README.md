@@ -55,7 +55,7 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
         example: `_COMPOSER_INPUT_BUCKET = us-central1-test-env-4319fd69-bucket`
 
-    - <strong> _DEV_ENV_NAME =  <em> name of the dev environemt </em> </strong>
+    - <strong> _DEV_ENV_NAME =  <em> name of the dev environemt </em> </strong> Note: This is required for proper "IF" condition functioning.
 
         example: `_COMPOSER_INPUT_BUCKET = dev-env`
 
