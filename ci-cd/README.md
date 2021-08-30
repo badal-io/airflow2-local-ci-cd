@@ -32,19 +32,13 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 7. <strong> id: `update-PyPi` </strong>
    - Adds/Updates/Removes PyPi packages in Composer. Items should be populated in the `docker/requirements-airflow.txt` file.
 
-## Composer Variables
+8. <strong> id: `sync-plugins` </strong>
+   - Sync plugins from repo into Composer
 
- Variables
- Helpers/Scripts
- docker/Dockerfile-CI
- docker/requirements.txt
- ci-cd/ cloudbuild.yaml
- ci-cd/composer-config
+9. <strong> id: `sync-dags` </strong>
+   - Sync dags from repo into Composer
 
-## Composer Config
-
-
-## PyPi packages
+</br>
 
 
 ## GitOps triggers
