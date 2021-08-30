@@ -10,11 +10,13 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
 ### Git Triggers
 
-1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
+### 1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
 
   - Event type: <strong> Push to a branch </strong>
 
-  - Source: <strong> Git repository </strong>
+  - Source repository: <strong> Git repository </strong>
+
+  - Source branch: <strong> Branch </strong>. <em> For example, if there are two environments : dev and prod, you will need to create two triggers with the same repository, but with different branches to monitor </em>
 
   - Included file filter:
 
