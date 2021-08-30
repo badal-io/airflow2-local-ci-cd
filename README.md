@@ -101,7 +101,7 @@ c
 
 ## 4. Initialization and run
 
-  - 4.1 Open a termianl Run the following commands (for the first time only):
+  - 4.1 Open a terminal and run the following commands (for the first time only):
 
       `./helpers/scripts/init_airflow.sh`   (for Windows WSL use `sudo` before the command)
 
@@ -118,6 +118,10 @@ c
 <br/>
 
 ## 5. Commands for operations & maintenance:
+
+  - To start Airflow and all services:
+
+      `docker-compose up`
 
   - To stop all Airflow containers (via a new terminal session):
 
