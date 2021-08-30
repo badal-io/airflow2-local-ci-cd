@@ -28,7 +28,7 @@
 
        `git clone https://github.com/badal-io/airflow2-local.git`
 
-  - 2.2.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder)
+  - 2.2.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder) with the Airflow 2 code
 
   - 2.2.5 &nbsp; Open a terminal window `(Menu Terminal -- New Terminal)`
 
@@ -40,7 +40,7 @@
 
   - 2.3.2 &nbsp; Install `Linux Ubuntu` distribution from the Microsoft Store: https://aka.ms/wslstore (this step is part of the previous step)
 
-  - 2.3.3 &nbsp; Launch WLS Ubuntu and create a <strong>  username (`airflow`) & password (`airflow`) <strong> when prompted
+  - 2.3.3 &nbsp; Launch WLS Ubuntu and create a <strong>  username (`airflow`) & password (`airflow`) </strong> when prompted
 
   - 2.3.4 &nbsp; In the WSL terminal window go to `/home/airflow` and clone the repo:
 
