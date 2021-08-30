@@ -24,7 +24,7 @@ steps:
     id: 'env name'
   # [END env name]
 
-# - Pull the existing Airflow build from GCR if any.
+# - Pull the existing Airflow build from GCR if any
   # [START pull-airflow2]
   - name: 'gcr.io/cloud-builders/docker'
     waitFor: ['-']
