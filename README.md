@@ -40,7 +40,7 @@ c
 
   - 2.3.1 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
-  - 2.3.2 &nbsp; Install `Linux Ubuntu` distribution from the Microsoft Store: https://aka.ms/wslstore (this step is part of the prevous step)
+  - 2.3.2 &nbsp; Install `Linux Ubuntu` distribution from the Microsoft Store: https://aka.ms/wslstore (this step is part of the previous step)
 
   - 2.3.3 &nbsp; Launch WLS Ubuntu and create a <strong>  username (`airflow`) & password (`airflow`) <strong> when prompted
 
@@ -52,9 +52,9 @@ c
 
   - 2.3.5 &nbsp; On Windows 10, install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-  - 2.3.6 &nbsp; Launch `Docker Desktop`, go to <strong> Settings --> Resources --> WSL INTEGRATION and toggle "Ubuntu". Once done, click the "Apply & Restart" button  </strong>
+  - 2.3.6 &nbsp; Once installed, launch `Docker Desktop`, go to <strong> Settings --> Resources --> WSL INTEGRATION and toggle "Ubuntu". Once done, click the "Apply & Restart" button  </strong>
 
-  - 2.3.7 &nbsp; Open a comamnd line and excute the follfollowing command to make sure that Ubuntu has been set as a default WSL:
+  - 2.3.7 &nbsp; Open a comamnd line in Windows (CMD) and excute the following command to make sure that Ubuntu has been set as a default WSL:
 
        `wsl --setdefault Ubuntu`
 
