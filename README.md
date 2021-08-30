@@ -16,8 +16,6 @@
 
   - 2.1.3 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
 
-c
-
   - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 ### 2.2 &nbsp; For MAC OS:
