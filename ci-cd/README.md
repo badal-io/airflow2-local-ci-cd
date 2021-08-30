@@ -3,6 +3,59 @@
 
 This project contains GCP cloudbuild confiugration code that run the Airflow 2 CI/CD pipeline.
 
+
+## GitOps
+
+The CI/CD pipeline automatically builds a container image from committed code, stores the image in Container Registry, performs unit and integration testing, and deploys and update variables, configuration, packages, dags, plugins to GCP Coomposer environments (dev or prod).
+
+### Git Triggers
+
+1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
+
+  - Event type: <strong> Push to a branch </strong>
+
+  - Source: <strong> Git repository </strong>
+
+  - Included file filter:
+
+     - `composer/**`
+
+     - `plugins/**`
+
+     - `dags/**`
+
+     - `docker/**`
+
+     - `cloudbuild.yaml`
+
+     - `tests/**`
+
+     - `ci-cd/**`
+
+     - `variables/**`
+
+  - Ignored file filter:
+
+     - `**README.md`
+
+  - CLoudbuild configuration:
+
+     - `ci-cd/cloudbuild.yaml`
+
+  - Substitution variables:
+
+    - <strong> _COMPOSER_ENV_NAME  =  <em> name of the environment </em> </strong>
+
+        example: `_COMPOSER_ENV_NAME = dev-env`
+
+
+    - <strong> _COMPOSER_INPUT_BUCKET =  <em> name of the Composer Bucket </em> </strong>
+
+        example: `_COMPOSER_INPUT_BUCKET = us-central1-test-env-4319fd69-bucket`
+
+
+
+
 ## Pipeline Steps:
 
 1. <strong> id: `env name` </strong>
@@ -39,6 +92,3 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
    - Sync dags from repo into Composer
 
 </br>
-
-
-## GitOps triggers
