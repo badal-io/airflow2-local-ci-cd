@@ -8,7 +8,7 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 The CI/CD pipeline automatically builds a container image from committed code, stores the image in Container Registry, performs unit and integration testing, and deploys and update variables, configuration, packages, dags, plugins to GCP Coomposer environments (dev or prod).
 
-### Git Triggers
+### Cloud Build Triggers
 
 ### 1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
 
@@ -40,7 +40,7 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
      - `**README.md`
 
-  - CLoudbuild configuration:
+  - Cloud Build configuration file path:
 
      - `ci-cd/cloudbuild.yaml`
 
@@ -54,8 +54,6 @@ The CI/CD pipeline automatically builds a container image from committed code, s
     - <strong> _COMPOSER_INPUT_BUCKET =  <em> name of the Composer Bucket </em> </strong>
 
         example: `_COMPOSER_INPUT_BUCKET = us-central1-test-env-4319fd69-bucket`
-
-
 
 
 ## Pipeline Steps:
