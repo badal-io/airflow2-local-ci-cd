@@ -1,13 +1,30 @@
 
 ## 1. Recommended dev tools to use:
 
-- OS: : `MAC OS, Linux Ubuntu` (Windows requires Windows Subsystem for Linux)
+- OS: : `MAC OS, Linux Ubuntu, GCP Cloud Shell` (Windows requires Windows Subsystem for Linux)
 - Development env: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
 <br/>
 
 ## 2. Dependencies & prerequisities on a local PC:
+
+### 2.1 &nbsp; For GCP Cloud Shell:
+
+  - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
+
+  - 2.1.2 &nbsp; Clone the repo and go to the directory:
+
+       `git clone https://github.com/badal-io/airflow2-local.git`
+
+       `cd airflow2-local`
+
+  - 2.1.3 &nbsp; Run the following commands to initialize the environment and install prrequisities:
+        `chmo +x ./helpers/scripts/gcp-cloud-shell && ./helpers/scripts/gcp-cloud-shell`
+
+  - 2.1.4 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
+
+
 ### 2.1 &nbsp; For Linux OS:
 
   - 2.1.1 &nbsp; Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
