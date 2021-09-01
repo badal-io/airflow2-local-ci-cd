@@ -20,7 +20,7 @@
        `cd airflow2-local`
 
   - 2.1.3 &nbsp; Run the following commands to initialize the environment and install prrequisities:
-        `chmo +x ./helpers/scripts/gcp-cloud-shell && ./helpers/scripts/gcp-cloud-shell`
+        `chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh`
 
   - 2.1.4 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
