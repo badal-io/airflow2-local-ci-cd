@@ -179,7 +179,7 @@ steps:
 # - Update variables.
   # [START update-vars]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    waitFor: ['clean-up-data-dir']
+    waitFor: ['lint-code']
     entrypoint: 'bash'
     args: [
             'composer_vars_update.sh',
@@ -220,7 +220,7 @@ steps:
 
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: 'gcr.io/cloud-builders/gsutil'
     waitFor: ['update-PyPi']
     args: [
             'rsync', '-r', '-c', '-d',
@@ -232,7 +232,7 @@ steps:
 
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: 'gcr.io/cloud-builders/gsutil'
     waitFor: ['sync-plugins']
     args: [
             'rsync', '-r', '-c', '-d',
