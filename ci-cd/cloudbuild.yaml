@@ -138,6 +138,7 @@ steps:
           '${_COMPOSER_REGION}',
           '${BUILD_ID}'
           ]
+    dir: './helpers/scripts'
     id: 'dag-parse-smoke-test'
   # [END dag-parse-smoke-test]
 
