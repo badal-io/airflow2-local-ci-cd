@@ -15,7 +15,7 @@ error_string1='INVALID_ARGUMENT: No change in configuration.'
 error_string2='Cannot update Environment with no update type specified'
 no_error='..done.'
 
-# - Condifiton to sip to the next step if the error string mathces
+# - Condifiton to skip to the next step if the error string mathces
 if [[ "$cmd_output" == *"$error_string1"* ]] || [[ "$cmd_output" == *"$error_string2"* ]]
 then
   echo " >>>>>  NO CHANGE IN THE CONFIGURATION, SKIPPING TO THE NEXT STEP <<<<<<" && exit 0
