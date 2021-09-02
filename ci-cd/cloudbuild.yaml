@@ -173,10 +173,36 @@ steps:
     id: 'update-PyPi'
   # [END update-PyPi]
 
+
+# Sync DAGs to data dir for integration test parsing in target Composer Environment.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+    waitFor: ['update-PyPi']
+    entrypoint: 'gsutil'
+    args: [
+          'rsync','-r', '-d',
+          'dags/',
+          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+        ]
+    id: 'stage-for-smoke-test'
+
+# - Run smoke tests parsing in target Composer Environment.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['stage-for-smoke-test']
+    entrypoint: 'gcloud'
+    args: [
+         'composer', 'environments', 'storage',
+          'dags', 'list',
+          '--location', '${_COMPOSER_REGION}',
+          '--environment', '${_COMPOSER_ENV_NAME}',
+          #'-sd', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
+        ]
+    id: 'dag-parse-smoke-test'
+
+
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
   - name: gcr.io/cloud-builders/gsutil
-    waitFor: ['update-PyPi']
+    waitFor: ['dag-parse-smoke-test']
     args: [
             'rsync', '-r', '-c', '-d',
             'plugins/',
