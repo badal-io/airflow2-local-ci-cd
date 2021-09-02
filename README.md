@@ -118,7 +118,7 @@
 
   - 4.1 Open a terminal and run the following commands (for the first time only):
 
-      `./helpers/scripts/init_airflow.sh`   (for Windows WSL use `sudo` before the command)
+      `./helpers/scripts/init_airflow.sh`   (for GCP Cloud Shell and  Windows WSL use `sudo` before the command)
 
   - 4.2 Start Airflow and all services:
 
