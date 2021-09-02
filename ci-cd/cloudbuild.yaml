@@ -243,7 +243,7 @@ steps:
   # [END sync-dags]
 
 # - Send email.
-  # [START send-email
+  # [START send-email]
 #  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 #    waitFor: ['sync-dags']
 #    entrypoint: 'bash'
@@ -259,7 +259,7 @@ steps:
 #    secretManager:
 #    - versionName: projects/PROJECT_ID/secrets/SEND_GRID_KEY/versions/latest
 #      env: SEND_GRID_KEY
-  # [END send-email
+  # [END send-email]
 
 timeout: 3600s
 images:
