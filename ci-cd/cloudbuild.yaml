@@ -186,18 +186,17 @@ steps:
     id: 'stage-for-smoke-test'
 
 # - Run smoke tests parsing in target Composer Environment.
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
     waitFor: ['stage-for-smoke-test']
     entrypoint: 'gcloud'
     args: [
-         'composer', 'environments', 'storage',
-          'dags', 'list',
+          'beta', 'composer', 'environments', 'run',
+          '${_COMPOSER_ENV_NAME}',
           '--location', '${_COMPOSER_REGION}',
-          '--environment', '${_COMPOSER_ENV_NAME}',
-          #'-sd', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
-        ]
+          'dags', 'list', '--',
+          '-S', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
+          ]
     id: 'dag-parse-smoke-test'
-
 
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
