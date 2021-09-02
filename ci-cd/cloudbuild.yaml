@@ -9,6 +9,11 @@ substitutions:
   _COMPOSER_CONF_FILE: composer-config
   #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in docker/Dockerfile-CI
   _PYTHON_VERSION: '3.8'
+  #_SENDGRID_API_KEY:             # The var is declared in GCP secret manager
+  _EMAIL_TO: test@xyz.com
+  _FROM_EMAIL: test@abc.com
+  _FROM_NAME: gcp-build-notifier
+  _SUBJECT: Composer pipeline build status
 
 steps:
 # - Verify Composer's env name.
@@ -109,10 +114,50 @@ steps:
     id: "int-test"
   # [END int-test]
 
+# Sync DAGs to 'data' dir for DAG parsing test
+  # [START stage-for-smoke-test]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['int-test']
+    entrypoint: 'gsutil'
+    args: [
+          'rsync','-r', '-d',
+          'dags/',
+          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+        ]
+    id: 'stage-for-smoke-test'
+  # [END stage-for-smoke-test]
+
+# - Run DAG parsing test.
+  # [START dag-parse-smoke-test]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['stage-for-smoke-test']
+    entrypoint: 'gcloud'
+    args: [
+          'beta', 'composer', 'environments', 'run',
+          '${_COMPOSER_ENV_NAME}',
+          '--location', '${_COMPOSER_REGION}',
+          'dags', 'list', '--',
+          '-S', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
+          ]
+    id: 'dag-parse-smoke-test'
+  # [END dag-parse-smoke-test]
+
+# - Clean up after the smoke test.
+  # [START clean-up-data]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['dag-parse-smoke-test']
+    entrypoint: 'gsutil'
+    args: [
+         '-m', 'rm','-r',
+          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+        ]
+    id: 'clean-up-data-dir'
+  # [END clean-up-data-dir]
+
 # - Style&Lint code.
   # [START lint-code]
-  - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
-    waitFor: ['int-test']
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['-']
     entrypoint: 'bash'
     args:
       - '-c'
@@ -133,8 +178,8 @@ steps:
 
 # - Update variables.
   # [START update-vars]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-    waitFor: ['lint-code']
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['clean-up-data-dir']
     entrypoint: 'bash'
     args: [
             'composer_vars_update.sh',
@@ -147,7 +192,7 @@ steps:
 
 # - Update airflow config parameters.
   # [START update-config]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['update-vars']
     entrypoint: 'bash'
     args: [
@@ -161,7 +206,7 @@ steps:
 
 # - Update PyPi packages.
   # [START update-PyPi]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['update-config']
     entrypoint: 'bash'
     args: [
@@ -173,35 +218,10 @@ steps:
     id: 'update-PyPi'
   # [END update-PyPi]
 
-
-# Sync DAGs to data dir for integration test parsing in target Composer Environment.
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
-    waitFor: ['update-PyPi']
-    entrypoint: 'gsutil'
-    args: [
-          'rsync','-r', '-d',
-          'dags/',
-          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
-        ]
-    id: 'stage-for-smoke-test'
-
-# - Run smoke tests parsing in target Composer Environment.
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
-    waitFor: ['stage-for-smoke-test']
-    entrypoint: 'gcloud'
-    args: [
-          'beta', 'composer', 'environments', 'run',
-          '${_COMPOSER_ENV_NAME}',
-          '--location', '${_COMPOSER_REGION}',
-          'dags', 'list', '--',
-          '-S', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
-          ]
-    id: 'dag-parse-smoke-test'
-
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
-  - name: gcr.io/cloud-builders/gsutil
-    waitFor: ['dag-parse-smoke-test']
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['update-PyPi']
     args: [
             'rsync', '-r', '-c', '-d',
             'plugins/',
@@ -212,7 +232,7 @@ steps:
 
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
-  - name: gcr.io/cloud-builders/gsutil
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-plugins']
     args: [
             'rsync', '-r', '-c', '-d',
@@ -221,6 +241,26 @@ steps:
           ]
     id: 'sync-dags'
   # [END sync-dags]
+
+# - Send email.
+  # [START send-email
+#  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+#    waitFor: ['sync-dags']
+#    entrypoint: 'bash'
+#    args: [
+#            'sendgrid.sh', '$$SEND_GRID_KEY',
+#            '${_EMAIL_TO', '${_FROM_EMAIL}',
+#            '${_FROM_NAME', '${_SUBJECT}'
+#          ]
+#    dir: './helpers/scripts'
+#    secretEnv: ['SEND_GRID_KEY']
+#    id: 'end-email'
+#  availableSecrets:
+#    secretManager:
+#    - versionName: projects/PROJECT_ID/secrets/SEND_GRID_KEY/versions/latest
+#      env: SEND_GRID_KEY
+  # [END send-email
+
 timeout: 3600s
 images:
   - 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
