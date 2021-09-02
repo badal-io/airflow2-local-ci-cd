@@ -122,7 +122,7 @@ steps:
     args: [
           'rsync','-r', '-d',
           'dags/',
-          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/${BUILD_ID}'
         ]
     id: 'stage-for-smoke-test'
   # [END stage-for-smoke-test]
@@ -131,20 +131,19 @@ steps:
   # [START dag-parse-smoke-test]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['stage-for-smoke-test']
-    entrypoint: 'gcloud'
+    entrypoint: 'bash'
     args: [
-          'beta', 'composer', 'environments', 'run',
+          'composer_dags_parse.sh',
           '${_COMPOSER_ENV_NAME}',
-          '--location', '${_COMPOSER_REGION}',
-          'dags', 'list', '--',
-          '-S', '/home/airflow/gcs/data/test-dags/$BUILD_ID'
+          '${_COMPOSER_REGION}',
+          '${BUILD_ID}'
           ]
     id: 'dag-parse-smoke-test'
   # [END dag-parse-smoke-test]
 
 # - Clean up after the smoke test.
   # [START clean-up-data]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['dag-parse-smoke-test']
     entrypoint: 'gsutil'
     args: [
@@ -156,8 +155,8 @@ steps:
 
 # - Style&Lint code.
   # [START lint-code]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-    waitFor: ['-']
+  - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
+    waitFor: ['clean-up-data-dir']
     entrypoint: 'bash'
     args:
       - '-c'
@@ -178,7 +177,7 @@ steps:
 
 # - Update variables.
   # [START update-vars]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['clean-up-data-dir']
     entrypoint: 'bash'
     args: [
@@ -192,7 +191,7 @@ steps:
 
 # - Update airflow config parameters.
   # [START update-config]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-vars']
     entrypoint: 'bash'
     args: [
@@ -206,7 +205,7 @@ steps:
 
 # - Update PyPi packages.
   # [START update-PyPi]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-config']
     entrypoint: 'bash'
     args: [
@@ -220,7 +219,7 @@ steps:
 
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-PyPi']
     args: [
             'rsync', '-r', '-c', '-d',
@@ -232,7 +231,7 @@ steps:
 
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['sync-plugins']
     args: [
             'rsync', '-r', '-c', '-d',
@@ -244,7 +243,7 @@ steps:
 
 # - Send email.
   # [START send-email
-#  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+#  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 #    waitFor: ['sync-dags']
 #    entrypoint: 'bash'
 #    args: [
