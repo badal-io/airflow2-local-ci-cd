@@ -4,7 +4,7 @@
 
 gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/airflow/gcs/plugins 2> /tmp/Output
 
-# - Store the error string in var
+# - Store the command output string in var
 cmd_output=$(</tmp/Output)
 
 
