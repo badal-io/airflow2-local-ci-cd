@@ -6,7 +6,7 @@
 
 gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) 2> /tmp/Output
 
-# - Store the rror string in var
+# - Store the error string in var
 cmd_output=$(</tmp/Output)
 
 
