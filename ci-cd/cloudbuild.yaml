@@ -133,7 +133,7 @@ steps:
     waitFor: ['stage-for-smoke-test']
     entrypoint: 'bash'
     args: [
-          'composer_dags_parse.sh',
+          'composer_dag_parse.sh',
           '${_COMPOSER_ENV_NAME}',
           '${_COMPOSER_REGION}',
           '${BUILD_ID}'
