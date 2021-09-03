@@ -1,15 +1,15 @@
 # - Airflow Env variables.
 substitutions:
-  #_COMPOSER_ENV_NAME: test-env   # The var is declared in GCP cloudbuild triggers.
-  #_DEV_ENV_NAME: test_env        # This varibale must be declared to make sure "IF" conditions wor propoerly (declared in trigger)
+  #_COMPOSER_ENV_NAME: test-env   # Declared in a gcp cloudbuild trigger
+  #_DEV_ENV_NAME: test_env        # Declared in a gcp cloudbuild trigger
   _GCP_PROJECT_ID: badal-sandbox-309813
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
   _COMPOSER_VARS_FILE: composer-vars
   _COMPOSER_CONF_FILE: composer-config
-  #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in docker/Dockerfile-CI
+  #_AIRFLOW_VERSION: '2.1.1'      # Declared in docker/Dockerfile-CI
   _PYTHON_VERSION: '3.8'
-  #_SENDGRID_API_KEY:             # The var is declared in GCP secret manager
+  #_SENDGRID_API_KEY:             # Declared in GCP secret manager
   _EMAIL_TO: test@xyz.com
   _FROM_EMAIL: test@abc.com
   _FROM_NAME: gcp-build-notifier
@@ -30,7 +30,7 @@ steps:
     id: 'env name'
   # [END env name]
 
-# - Pull the existing Airflow build from GCR if any
+# - Pull the existing Airflow build from GCR if any.
   # [START pull-airflow2]
   - name: 'gcr.io/cloud-builders/docker'
     waitFor: ['-']
