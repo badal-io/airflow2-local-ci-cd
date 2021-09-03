@@ -21,7 +21,7 @@
 
   - 2.1.3 &nbsp; In cloud shell, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
 
-  - 2.1.4 &nbsp; Run the following commands to initialize the environment and install prrequisities:
+  - 2.1.4 &nbsp; Open a new terminal `(Menu Terminal -- New Terminal)` and run the following commands to initialize the environment and install prequisities:
         `chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh`
 
   - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
