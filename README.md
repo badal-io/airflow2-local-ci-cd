@@ -42,11 +42,13 @@
 
   - 2.3.1 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
-  - 2.3.2 &nbsp; Disable docker compose v2 experimental features via the CLI, run: `docker-compose disable-v2`
+  - 2.3.2 &nbsp; Disable docker compose v2 experimental features via the CLI, run:
+
+        docker-compose disable-v2
 
   - 2.3.3 &nbsp; Clone the repo:
 
-       `git clone https://github.com/badal-io/airflow2-local.git`
+            git clone https://github.com/badal-io/airflow2-local.git
 
   - 2.3.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder) with the Airflow 2 code
 
@@ -64,9 +66,7 @@
 
   - 2.4.4 &nbsp; In the WSL terminal window go to `/home/airflow` and clone the repo:
 
-       `cd /home/airflow`
-
-       `git clone https://github.com/badal-io/airflow2-local.git`
+            cd /home/airflow && git clone https://github.com/badal-io/airflow2-local.git
 
   - 2.4.5 &nbsp; On Windows 10, install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
@@ -165,7 +165,7 @@
 
     example:
 
-         cd tests && ./airflow "pytest tests/unit"
+          ./airflow "pytest tests/unit"
 
   - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
@@ -173,7 +173,7 @@
 
     example:
 
-          cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
+          ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
 
   - To spin up an Ops container with Bash session:
 
