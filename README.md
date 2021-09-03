@@ -128,11 +128,11 @@
 
       <strong>Note</strong>: for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
-  - 4.3 Authentificate for GCP services, run the following script and perform the gcp authentification:
+  - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-      `./helpers/scripts/gcp-auth.sh`    Note: NOT required for the GCP Cloud Shell option
+      `./helpers/scripts/gcp-auth.sh`    Note: NOT required for the GCP Cloud Shell option, skip this step
 
-  - 4.4  <strong> Airflow 2 is ready! </strong>
+  - <strong> Airflow 2 is ready! </strong>
 
 <br/>
 
