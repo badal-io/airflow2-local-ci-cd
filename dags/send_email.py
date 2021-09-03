@@ -14,7 +14,7 @@ default_task_args = {
     "retry_exponential_backoff": True,
     "project_id": "badal-sandbox-309813",
     "start_date": datetime.datetime(2021, 9, 3),
-    "email": "john.dou@example.com",
+    "email": "zack.amirakulov@badal.io",
 }
 
 
