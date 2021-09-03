@@ -242,7 +242,7 @@ steps:
   # [START send-email]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-dags']
-    entrypoint: 'bash'
+    entrypoint: 'gcoud'
     args: [
             'beta', 'composer', 'environments', 'run',
             '${_COMPOSER_ENV_NAME}',
