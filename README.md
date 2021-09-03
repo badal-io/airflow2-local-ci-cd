@@ -11,7 +11,7 @@
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
-<strong> !Note: GCP Cloud Shell has several limitations. If your cloud shell session expired or closed, you must repeat the Airflow initializaiton steps in section 4 ( 4.1 & 4.2) </strong>.
+<strong> !Note: GCP Cloud Shell has several limitations. Everytime when the session is expired or closed, you must repeat the Airflow initializaiton steps provided in section #4 (steps 4.1 & 4.2) </strong>
 
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
