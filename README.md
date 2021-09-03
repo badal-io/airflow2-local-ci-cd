@@ -7,7 +7,7 @@
 
 <br/>
 
-## 2. Dependencies & prerequisities for a local PC or cloud VMs:
+## 2. Dependencies & prerequisities for a local PC or cloud VM:
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
