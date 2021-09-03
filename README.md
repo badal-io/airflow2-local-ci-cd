@@ -9,7 +9,7 @@
 
 ## 2. Dependencies & prerequisities on a local PC:
 
-### 2.1 &nbsp; For GCP Cloud Shell:
+### 2.1 &nbsp; GCP Cloud Shell:
 
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
@@ -25,7 +25,7 @@
   - 2.1.4 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
 
-### 2.1 &nbsp; For Linux OS:
+### 2.1 &nbsp; Linux OS:
 
   - 2.1.1 &nbsp; Install the latest available version of `Docker`: https://docs.docker.com/get-docker/
 
@@ -35,7 +35,7 @@
 
   - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
-### 2.2 &nbsp; For MAC OS:
+### 2.2 &nbsp; MAC OS:
 
   - 2.2.1 &nbsp; Install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
@@ -51,7 +51,7 @@
 
   - 2.2.6 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
-### 2.3 &nbsp; For Windows 10 OS:
+### 2.3 &nbsp; Windows 10 OS:
 
   - 2.3.1 &nbsp; Install WSL (Windows Linux Subsystem): https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
