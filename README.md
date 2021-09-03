@@ -128,7 +128,9 @@
 
   - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-      `./helpers/scripts/gcp-auth.sh`    Note: NOT required for the GCP Cloud Shell option, skip this step
+      `./helpers/scripts/gcp-auth.sh`
+
+      Note: &nbsp; NOT required for the GCP Cloud Shell option, skip this step
 
   - <strong> Airflow 2 is ready! </strong>
 
