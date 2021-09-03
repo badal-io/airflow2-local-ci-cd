@@ -109,9 +109,9 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 </br>
 
 
-## Pipeline Steps dependign on environment "_COMPOSER_ENV_NAME" :
+### Pipeline steps matrix for different environments (_COMPOSER_ENV_NAME):
 
-|      Step      	|               Description              	| Dev env 	| Prod env 	|
+|      Step      	|               Description              	| Dev ENV 	| Prod ENV 	|
 |:--------------:	|:--------------------------------------:	|:-------:	|:--------:	|
 | env name       	| Print Env Name                         	|    Do   	|    Do    	|
 | pull-airflow2  	| Pull an existing docker image from GCR 	|    Do   	|   Skip   	|
