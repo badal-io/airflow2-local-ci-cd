@@ -17,14 +17,13 @@
 
   - 2.1.2 &nbsp; Clone the repo and go to the directory:
 
-       `git clone https://github.com/badal-io/airflow2-local.git`
-
-       `cd airflow2-local`
+            git clone https://github.com/badal-io/airflow2-local.git && cd airflow2-local
 
   - 2.1.3 &nbsp; In cloud shell, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
 
   - 2.1.4 &nbsp; Open a new terminal `(Menu Terminal -- New Terminal)` and run the following commands to initialize the environment and install prequisities:
-        `chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh`
+
+            chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh
 
   - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>).
 
@@ -75,7 +74,7 @@
 
   - 2.4.7 &nbsp; Open a comamnd line in Windows (CMD) and excute the following command to make sure that Ubuntu has been set as a default WSL:
 
-       `wsl --setdefault Ubuntu`
+            wsl --setdefault Ubuntu
 
   - 2.4.8 &nbsp; Install (if not already installed ) and launch <strong> Visual Studio Code </strong>
 
@@ -85,7 +84,7 @@
 
   - 2.4.11 &nbsp; Open a terminal session in VS code `(Menu Terminal -- New Terminal)` and run the WLS docker installation script:
 
-       `chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh`
+            chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh
 
   - 2.4.12 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
@@ -120,17 +119,15 @@
 
 ## 4. First-time initialization and run
 
-  - 4.1 Open a terminal and run the following commands:
+  - 4.1 Open a terminal and run the following commands (use `sudo` before the command for GCP Cloud Shell and Windows WSL VMs):
 
-          `./helpers/scripts/init_airflow.sh && docker-compose up`
-
-      (use `sudo` before the command for Cloud Shell and Windows WSL)
+              ./helpers/scripts/init_airflow.sh && docker-compose up
 
       Note: &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended
 
   - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-      `./helpers/scripts/gcp-auth.sh`
+            ./helpers/scripts/gcp-auth.sh
 
       Note: &nbsp; NOT required for the GCP Cloud Shell option, skip this step
 
@@ -142,21 +139,21 @@
 
   - To start Airflow and all services:
 
-      `docker-compose up`
+            docker-compose up
 
   - To stop all Airflow containers (via a new terminal session):
 
-    `docker-compose down`
+            docker-compose down
 
   - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
 
-    `docker-compose down`
+            docker-compose down
 
-    `docker-compose up --build`
+            docker-compose up --build
 
   - To cleaning up all containers and remove database:
 
-    `docker-compose down --volumes --rmi all`
+            docker-compose down --volumes --rmi all
 
 <br/>
 
@@ -164,11 +161,11 @@
 
   - To run unit tests navigate to the `tests` directory and run the following command:
 
-     `./airflow "test command"`
+       `./airflow "test command"`
 
     example:
 
-     <strong> `cd tests && ./airflow "pytest tests/unit"` </strong>
+         cd tests && ./airflow "pytest tests/unit"
 
   - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
@@ -176,19 +173,19 @@
 
     example:
 
-     <strong> `cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"`  </strong>
+          cd tests && ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
 
   - To spin up an Ops container with Bash session:
 
-     `./tests/airflow bash`
+            ./tests/airflow bash
 
   - To print Airflow info:
 
-     `./tests/airflow info`
+            ./tests/airflow info
 
   - To lauch a python session in Airflow:
 
-     `./tests/airflow python`
+            ./tests/airflow python
 
   - To access the Airflow Web UI:
 
@@ -200,13 +197,18 @@
 
   - 7.1 Install pre-commit app:
 
-    - For Linux/Windows `pip3 install pre-commit`
+    - For Linux/Windows
 
-    - For MAC-OS `brew install pre-commit`
+            pip3 install pre-commit
 
+    - For MAC-OS
+
+            brew install pre-commit
 
   - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned):
 
-    `pre-commit install`
+            pre-commit install
 
-  - 7.3 Run pre-commit tests:     `pre-commit run --all-files`
+  - 7.3 Run pre-commit tests:
+
+            pre-commit run --all-files
