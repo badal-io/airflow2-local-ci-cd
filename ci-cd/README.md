@@ -3,6 +3,24 @@
 
 This project contains GCP cloudbuild confiugration code that run the Airflow 2 CI/CD pipeline.
 
+<br/>
+
+## Prerequisities
+
+1. Declare your `Project ID` variable in the cloudbuild.yaml file:
+
+`_GCP_PROJECT_ID: <my_project_1>`
+
+2. Grant all necessary permissions to a `CLoud Build service account`
+
+3. Add variables to Airflow to the `variables\composer-vars` file
+
+4. Add your Py dependencies to the `docker/requirements-airflow.txt` file
+
+5. Add your custom configuration lines to the `ci-cd/composer-config` file
+
+
+<br/>
 
 ## GitOps
 
@@ -59,6 +77,8 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
         example: `_COMPOSER_INPUT_BUCKET = dev-env`
 
+<br/>
+
 ## Pipeline Steps:
 
 1. <strong> id: `env name` </strong>
@@ -107,7 +127,6 @@ The CI/CD pipeline automatically builds a container image from committed code, s
    - Sends an email if the build has been successfull
 
 </br>
-
 
 ### Pipeline steps matrix for different environments (_COMPOSER_ENV_NAME):
 
