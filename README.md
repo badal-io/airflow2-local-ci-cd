@@ -48,7 +48,7 @@
 
   - 2.3.3 &nbsp; Clone the repo:
 
-            git clone https://github.com/badal-io/airflow2-local.git
+        git clone https://github.com/badal-io/airflow2-local.git
 
   - 2.3.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder) with the Airflow 2 code
 
@@ -66,7 +66,7 @@
 
   - 2.4.4 &nbsp; In the WSL terminal window go to `/home/airflow` and clone the repo:
 
-            cd /home/airflow && git clone https://github.com/badal-io/airflow2-local.git
+        cd /home/airflow && git clone https://github.com/badal-io/airflow2-local.git
 
   - 2.4.5 &nbsp; On Windows 10, install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
@@ -74,7 +74,7 @@
 
   - 2.4.7 &nbsp; Open a comamnd line in Windows (CMD) and excute the following command to make sure that Ubuntu has been set as a default WSL:
 
-            wsl --setdefault Ubuntu
+        wsl --setdefault Ubuntu
 
   - 2.4.8 &nbsp; Install (if not already installed ) and launch <strong> Visual Studio Code </strong>
 
@@ -84,7 +84,7 @@
 
   - 2.4.11 &nbsp; Open a terminal session in VS code `(Menu Terminal -- New Terminal)` and run the WLS docker installation script:
 
-            chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh
+        chmod +x ./helpers/scripts/docker-wls.sh && sudo ./helpers/scripts/docker-wls.sh
 
   - 2.4.12 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
 
@@ -121,13 +121,13 @@
 
   - 4.1 Open a terminal and run the following commands (use `sudo` before the command for GCP Cloud Shell and Windows WSL VMs):
 
-              ./helpers/scripts/init_airflow.sh && docker-compose up
+        ./helpers/scripts/init_airflow.sh && docker-compose up
 
       Note: &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended
 
   - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-            ./helpers/scripts/gcp-auth.sh
+        ./helpers/scripts/gcp-auth.sh
 
       Note: &nbsp; NOT required for the GCP Cloud Shell option, skip this step
 
@@ -139,21 +139,21 @@
 
   - To start Airflow and all services:
 
-            docker-compose up
+        docker-compose up
 
   - To stop all Airflow containers (via a new terminal session):
 
-            docker-compose down
+        docker-compose down
 
   - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
 
-            docker-compose down
+        docker-compose down
 
-            docker-compose up --build
+        docker-compose up --build
 
   - To cleaning up all containers and remove database:
 
-            docker-compose down --volumes --rmi all
+        docker-compose down --volumes --rmi all
 
 <br/>
 
@@ -165,7 +165,7 @@
 
     example:
 
-          ./airflow "pytest tests/unit"
+        ./airflow "pytest tests/unit"
 
   - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
@@ -173,19 +173,19 @@
 
     example:
 
-          ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
+        ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
 
   - To spin up an Ops container with Bash session:
 
-            ./tests/airflow bash
+        ./tests/airflow bash
 
   - To print Airflow info:
 
-            ./tests/airflow info
+        ./tests/airflow info
 
   - To lauch a python session in Airflow:
 
-            ./tests/airflow python
+        ./tests/airflow python
 
   - To access the Airflow Web UI:
 
@@ -199,16 +199,16 @@
 
     - For Linux/Windows
 
-            pip3 install pre-commit
+        pip3 install pre-commit
 
     - For MAC-OS
 
-            brew install pre-commit
+        brew install pre-commit
 
   - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned):
 
-            pre-commit install
+        pre-commit install
 
   - 7.3 Run pre-commit tests:
 
-            pre-commit run --all-files
+        pre-commit run --all-files
