@@ -11,7 +11,7 @@
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
-<strong> !Note: GCP Cloud Shell has several limitations. Everytime when the session is expired or closed, you must repeat the Airflow initializaiton steps provided in section #4 (steps 4.1 & 4.2) </strong>
+<strong> !Note: GCP Cloud Shell has several limitations. Everytime when the session is expired or closed, you have to re-run the Airflow initializaiton steps given in the section #4 (steps 4.1 & 4.2) </strong>
 
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
@@ -118,15 +118,15 @@
 
 <br/>
 
-## 4. Initialization and run
+## 4. First-time initialization and run
 
-  - 4.1 Open a terminal and run the following commands (for the first time only):
+  - 4.1 Open a terminal and run the following commands:
 
-      `./helpers/scripts/init_airflow.sh`   (for GCP Cloud Shell and  Windows WSL use `sudo` before the command)
+      `./helpers/scripts/init_airflow.sh && docker-compose up`
 
-  - 4.2 Start Airflow and all services:
+      <strong>Note</strong>: for <strong>GCP Cloud Shell</strong> and <strong>Windows WSL</strong> use `sudo` before the command.
 
-      `docker-compose up`
+      <strong>Note</strong>: for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
   - 4.3 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
