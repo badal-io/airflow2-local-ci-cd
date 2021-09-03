@@ -11,6 +11,8 @@
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
+<strong>!!! Note:  GCP Cloud Shell has several limitations. If your cloud shell session expired or closed, you must repeat the Airflow initializaiton steps in section 4 ( 4.1 & 4.2) </strong>.
+
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
   - 2.1.2 &nbsp; Clone the repo and go to the directory:
@@ -24,7 +26,7 @@
   - 2.1.4 &nbsp; Open a new terminal `(Menu Terminal -- New Terminal)` and run the following commands to initialize the environment and install prequisities:
         `chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh`
 
-  - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>)
+  - 2.1.5 &nbsp; Proceed with the installation and initialization steps (<strong> section #3 and #4 </strong>).
 
 
 ### 2.2 &nbsp; Linux OS:
@@ -128,7 +130,7 @@
 
   - 4.3 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-      `./helpers/scripts/gcp-auth.sh`
+      `./helpers/scripts/gcp-auth.sh`    Note: For GCP Cloud Shell optoption it is NOT required to run this command and make authentification.
 
   - 4.4  <strong> Airflow 2 is ready! </strong>
 
@@ -188,7 +190,7 @@
 
   - To access the Airflow Web UI:
 
-     `localhost:8080`
+     `localhost:8080` or  `Web Preview` (GCP Cloud Shell)
 
 <br/>
 
