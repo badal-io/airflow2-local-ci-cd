@@ -124,9 +124,9 @@
 
       `./helpers/scripts/init_airflow.sh && docker-compose up`
 
-      <strong>Note</strong>: for <strong>GCP Cloud Shell</strong> and <strong>Windows WSL</strong> use `sudo` before the command.
+      &nbsp;!Note: for <strong>GCP Cloud Shell</strong> and <strong>Windows WSL</strong> use `sudo` before the command.
 
-      <strong>Note</strong>: for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
+      &nbsp;!Note: for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
   - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
