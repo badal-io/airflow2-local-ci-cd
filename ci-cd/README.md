@@ -13,11 +13,13 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 2. Grant all necessary permissions to a `CLoud Build service account`
 
-3. Add variables to Airflow to the `variables\composer-vars` file
+3. Add variables to Airflow to the `variables/composer-vars` file
 
-4. Add your Py dependencies to the `docker/requirements-airflow.txt` file
+4. Set variables that contain secrets and API keys to GCP Composer via User Interface or use GCP Secret manager
 
-5. Add your custom configuration lines to the `ci-cd/composer-config` file
+5. Add your Py dependencies to the `docker/requirements-airflow.txt` file
+
+6. Add your custom configuration lines to the `ci-cd/composer-config` file
 
 
 <br/>
