@@ -9,7 +9,6 @@ gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) 2> 
 # - Store the error string in var
 cmd_output=$(</tmp/Output)
 
-
 # - Error matching string to skip to the next step
 error_string1='INVALID_ARGUMENT: No change in configuration.'
 error_string2='Cannot update Environment with no update type specified'
