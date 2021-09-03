@@ -11,7 +11,7 @@
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
-<strong>!!! Note:  GCP Cloud Shell has several limitations. If your cloud shell session expired or closed, you must repeat the Airflow initializaiton steps in section 4 ( 4.1 & 4.2) </strong>.
+<strong> !Note: GCP Cloud Shell has several limitations. If your cloud shell session expired or closed, you must repeat the Airflow initializaiton steps in section 4 ( 4.1 & 4.2) </strong>.
 
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
@@ -130,7 +130,7 @@
 
   - 4.3 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
-      `./helpers/scripts/gcp-auth.sh`    Note: For GCP Cloud Shell optoption it is NOT required to run this command and make authentification.
+      `./helpers/scripts/gcp-auth.sh`    Note: NOT required for the GCP Cloud Shell option
 
   - 4.4  <strong> Airflow 2 is ready! </strong>
 
