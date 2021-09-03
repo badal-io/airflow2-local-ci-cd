@@ -1,8 +1,8 @@
 
 ## 1. Recommended dev tools to use:
 
-- OS: : `MAC OS, Linux Ubuntu, GCP Cloud Shell` (Windows requires Windows Subsystem for Linux)
-- Development env: `Visual Studio Code (VS Code)`
+- OS: : `MAC OS, Linux Ubuntu, GCP Cloud Shell`   Note: Windows requires Windows Subsystem for Linux (WSL)
+- Code editiing/Development environment: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
 <br/>
