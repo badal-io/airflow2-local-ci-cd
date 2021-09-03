@@ -30,7 +30,11 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
 ### 1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
 
-  - Event type: <strong> Push to a branch </strong>
+  - Event type:
+
+    For any a DEV branch - <strong> Push to a branch </strong>
+
+    For any a PROD branch  - <strong> Push new tag </strong>
 
   - Source repository: <strong> Git repository </strong>
 
@@ -97,13 +101,13 @@ The CI/CD pipeline automatically builds a container image from committed code, s
    - Runs the built docker image (from the prevoius step) as a docker container, and performs an integration test inside the container.
 
 6. <strong> id: `stage-for-smoke-test` </strong>
-  - XXXXX.
+  - Copies all dags form local DAGS folder in to temporary folder in Composer (DATA folder).
 
 7. <strong> id: `dag-parse-smoke-test` </strong>
-  - XXXXX.
+  - Parses and list dags to make sure that validity and integrity of the dags.
 
 8. <strong> id: `clean-up-data` </strong>
-  - XXXXX.
+  - Cleans up the DATA folder after the successfull smoke test.
 
 9. <strong> id: `lint-code` </strong>
    - Runs automatic check pointing out issues in code such as missing semicolons, trailing whitespace, and debug statements.
