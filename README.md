@@ -122,7 +122,9 @@
 
   - 4.1 Open a terminal and run the following commands:
 
-      `./helpers/scripts/init_airflow.sh && docker-compose up` (Use `sudo` before the command for Cloud Shell and Windows WSL)
+          `./helpers/scripts/init_airflow.sh && docker-compose up`
+
+      (use `sudo` before the command for Cloud Shell and Windows WSL)
 
       Note: &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended
 
