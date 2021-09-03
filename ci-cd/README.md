@@ -76,23 +76,35 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 5. <strong> id: `int-test` </strong>
    - Runs the built docker image (from the prevoius step) as a docker container, and performs an integration test inside the container.
 
-6. <strong> id: `lint-code` </strong>
+6. <strong> id: `stage-for-smoke-test` </strong>
+  - XXXXX.
+
+7. <strong> id: `dag-parse-smoke-test` </strong>
+  - XXXXX.
+
+8. <strong> id: `clean-up-data` </strong>
+  - XXXXX.
+
+9. <strong> id: `lint-code` </strong>
    - Runs automatic check pointing out issues in code such as missing semicolons, trailing whitespace, and debug statements.
 
-7. <strong> id: `update-vars` </strong>
+10. <strong> id: `update-vars` </strong>
    - Adds/Updates varibales and their values in Composer. Variables/Values are populated in the `variables/composer-vars` file (comma separated KEY=VALUE). If no changes are in varibales/values, this step will be skipped. Please note, this step does not remove a variable, this has to be done manually from the Composer UI.
 
-6. <strong> id: `update-config` </strong>
+11. <strong> id: `update-config` </strong>
    - Adds/Updates configuration lines in Composer. Configuration items should be populated in the `composer/composer-config` file. A list of Airflow config override KEY=VALUE pairs to set. If a config override exists, its value is updated; otherwise, a new config override is created. If no changes in configuration, this step will be skipped. Please note, this step does not remove configuration, this has to be done manually from the Composer UI.
 
-7. <strong> id: `update-PyPi` </strong>
+12. <strong> id: `update-PyPi` </strong>
    - Adds/Updates/Removes PyPi packages in Composer. Items should be populated in the `docker/requirements-airflow.txt` file.
 
-8. <strong> id: `sync-plugins` </strong>
-   - Sync plugins from repo into Composer
+13. <strong> id: `sync-plugins` </strong>
+   - Syncs plugins from repo into Composer
 
-9. <strong> id: `sync-dags` </strong>
-   - Sync dags from repo into Composer
+14. <strong> id: `sync-dags` </strong>
+   - Syncs dags from repo into Composer
+
+15. <strong> id: `send-email` </strong>
+   - Sends an email if the build has been successfull
 
 </br>
 
@@ -106,9 +118,13 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 | build-airflow2 	| Build an image using cache             	|    Do   	|   Skip   	|
 | unit-test      	| Perform a unit test                    	|    Do   	|   Skip   	|
 | int-test       	| Perform an integration test            	|    Do   	|   Skip   	|
+| stage-for-smoke-test| Transfer dags into DATA dir         |    Do   	|    Do   	|
+| dag-parse-smoke-test| Run "list dags" command          	|    Do   	|    Do   	|
+| clean-up-data  	| Clean up DATA dir                    	|    Do   	|    Do   	|
 | lint-code      	| Code listing and Styling               	|    Do   	|   Skip   	|
 | update-vars    	| Update vars in Composer                	|    Do   	|    Do    	|
 | update-config  	| Update Config in Composer              	|    Do   	|    Do    	|
 | update-PyPi    	| Update PyPi packages in Composer       	|    Do   	|    Do    	|
 | sync-plugins   	| Sync plugins with Composer GCS         	|    Do   	|    Do    	|
 | sync-dags      	| Sync tags with Composer GCS            	|    Do   	|    Do    	|
+| send-email   	| Send an email upon successfull build   	|    Do   	|    Do   	|
