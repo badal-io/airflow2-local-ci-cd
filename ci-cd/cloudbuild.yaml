@@ -115,11 +115,12 @@ steps:
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['int-test']
     entrypoint: 'gsutil'
-    args: [
-          'rsync','-r', '-d',
-          'dags/',
-          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/${BUILD_ID}'
-        ]
+    args:
+          [
+            'rsync','-r', '-d',
+            'dags/',
+            'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/${BUILD_ID}'
+          ]
     id: 'stage-for-smoke-test'
   # [END stage-for-smoke-test]
 
@@ -128,11 +129,12 @@ steps:
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['stage-for-smoke-test']
     entrypoint: 'bash'
-    args: [
-          'composer_dag_parse.sh',
-          '${_COMPOSER_ENV_NAME}',
-          '${_COMPOSER_REGION}',
-          '${BUILD_ID}'
+    args:
+          [
+            'composer_dag_parse.sh',
+            '${_COMPOSER_ENV_NAME}',
+            '${_COMPOSER_REGION}',
+            '${BUILD_ID}'
           ]
     dir: './helpers/scripts'
     id: 'dag-parse-smoke-test'
@@ -143,10 +145,11 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['dag-parse-smoke-test']
     entrypoint: 'gsutil'
-    args: [
-         '-m', 'rm','-r',
-          'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
-        ]
+    args:
+          [
+            '-m', 'rm','-r',
+            'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+          ]
     id: 'clean-up-data-dir'
   # [END clean-up-data-dir]
 
@@ -177,7 +180,8 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['lint-code']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_vars_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-env-variables', '../../variables/${_COMPOSER_VARS_FILE}'
@@ -191,7 +195,8 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-vars']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_conf_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-airflow-configs', '../../ci-cd/${_COMPOSER_CONF_FILE}'
@@ -205,7 +210,8 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-config']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_py_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-pypi-packages-from-file', '../../docker/requirements-airflow.txt'
@@ -218,7 +224,8 @@ steps:
   # [START sync-plugins]
   - name: 'gcr.io/cloud-builders/gsutil'
     waitFor: ['update-PyPi']
-    args: [
+    args:
+          [
             'rsync', '-r', '-c', '-d',
             'plugins/',
             'gs://${_COMPOSER_INPUT_BUCKET}/plugins'
@@ -230,7 +237,8 @@ steps:
   # [START sync-dags]
   - name: 'gcr.io/cloud-builders/gsutil'
     waitFor: ['sync-plugins']
-    args: [
+    args:
+          [
             'rsync', '-r', '-c', '-d',
             'dags/',
             'gs://${_COMPOSER_INPUT_BUCKET}/dags'
@@ -243,7 +251,8 @@ steps:
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-dags']
     entrypoint: 'gcloud'
-    args: [
+    args:
+          [
             'beta', 'composer', 'environments', 'run',
             '${_COMPOSER_ENV_NAME}',
             '--location', '${_COMPOSER_REGION}',
