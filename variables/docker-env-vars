@@ -11,7 +11,6 @@ GCP_AUTH_SCOPE='https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform'
 AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT='google-cloud-platform://user:password@host/schema?extra__google_cloud_platform__scope=${GCP_AUTH_SCOPE}&extra__google_cloud_platform__project=${GCP_PROJECT_ID}'
 
 
-
 ## -- Below NOT used -- ##
 
 # - GCP using service account keys json
