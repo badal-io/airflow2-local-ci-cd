@@ -4,7 +4,9 @@
 #gcloud composer environments update $1 --location=$2 --clear-env-variables
 #gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4)  || exit 0
 
-gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) --async 2> /tmp/Output
+cat $4 >> var_file
+cat $5 >> var_file
+gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < var_file) --async 2> /tmp/Output
 
 # - Store the error string in var
 cmd_output=$(</tmp/Output)
