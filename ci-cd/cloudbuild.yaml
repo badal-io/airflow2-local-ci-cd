@@ -246,7 +246,7 @@ steps:
     id: 'sync-dags'
   # [END sync-dags]
 
-# - Run a test DAG & send email
+# - Check if a DAG is ready to send an email
   # [START wait-dag]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-dags']
