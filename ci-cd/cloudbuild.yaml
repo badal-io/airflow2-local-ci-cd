@@ -259,7 +259,7 @@ steps:
             '${_DAG_TO_EMAIL}', '6', '20'
           ]
     dir: './helpers/scripts'
-    id: 'wait-dag]'
+    id: 'wait-dag'
   # [END wait-dag]
 
 # - Run a test DAG & send email
