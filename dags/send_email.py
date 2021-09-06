@@ -22,6 +22,6 @@ with DAG(
         task_id="send_email",
         to="zack.amirakulov@badal.io",
         subject="Build status notification",
-        html_content=" <h2> The pipeline build for environment '{{ dag_run.conf['env'] }}' ",
+        html_content=" <h2> The pipeline build for environment '{{ dag_run.conf['key'][0] }}' and '{{ dag_run.conf['key'][1] }}' ",
     )
 # with commit ID: '{{ dag_run.conf['commit'] }}' on '{{ dag_run.conf['branch'] }}' has been successful! </h2>"
