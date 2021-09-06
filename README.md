@@ -8,11 +8,11 @@
 - Code editiing/Development environment: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
+<ins>Note:</ins> &nbsp; Before working with your local development enviroment <strong>fork<strong> the repository so you can have your own branch for development and custom changes.
+
 <br/>
 
 ## 2. Dependencies & prerequisities for a local PC or cloud VM:
-
-<strong> <ins> Before working with ypur local development enviroment fork the repository so you can have your own branch of developemnt and custom changes.</ins><strong>
 
 ### 2.1 &nbsp; GCP Cloud Shell:
 
