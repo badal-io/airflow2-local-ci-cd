@@ -16,7 +16,7 @@ error_string4='No module'
 error_string5='Cannot execute subcommand'
 
 # - Condifiton to skip to the next step if no error string mathces
-if [[ "$cmd_output" == *"$item"* ]] || \
+if [[ "$cmd_output" == *"$error_string1"* ]] || \
    [[ "$cmd_output" == *"$error_string2"* ]] || \
    [[ "$cmd_output" == *"$error_string3"* ]] || \
    [[ "$cmd_output" == *"$error_string4"* ]] || \
