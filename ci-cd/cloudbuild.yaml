@@ -192,7 +192,7 @@ steps:
     id: 'stage-airflow-variables'
   # [END stage-airflow-variables]
 
-  # Import Airflow Variables fomr the file.
+  # Import Composer Airflow Variables from the file.
   # [START import-airflow-variables]
   - name: 'google/cloud-sdk'
     waitFor: ['stage-airflow-variables']
@@ -208,7 +208,7 @@ steps:
     id: 'import-airflow-variables'
   # [END import-airflow-variables]
 
-# - Update variables.
+# - Update Composer env variables.
   # [START update-vars]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['import-airflow-variables']
@@ -289,7 +289,7 @@ steps:
             'composer_dag_wait.sh',
             '${_COMPOSER_ENV_NAME}',
             '${_COMPOSER_REGION}',
-            '${_DAG_TO_EMAIL}', '6', '20'
+            '${_DAG_TO_EMAIL}', '6', '20', '${SHORT_SHA}'
           ]
     dir: './helpers/scripts'
     id: 'wait-dag'
@@ -297,18 +297,18 @@ steps:
 
 # - Run a test DAG & send email
   # [START send-email]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-    waitFor: ['wait-dag']
-    entrypoint: 'gcloud'
-    args:
-          [
-            'beta', 'composer', 'environments', 'run',
-            '${_COMPOSER_ENV_NAME}',
-            '--location', '${_COMPOSER_REGION}',
-            'dags', 'trigger', '--',
-            '${_DAG_TO_EMAIL}'
-          ]
-    id: 'send-email'
+#  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+#    waitFor: ['wait-dag']
+#    entrypoint: 'gcloud'
+#    args:
+#          [
+#            'beta', 'composer', 'environments', 'run',
+#            '${_COMPOSER_ENV_NAME}',
+#            '--location', '${_COMPOSER_REGION}',
+#            'dags', 'trigger', '--',
+#            '${_DAG_TO_EMAIL}'
+#          ]
+#    id: 'send-email'
   # [END send-email]
 
 timeout: 3600s

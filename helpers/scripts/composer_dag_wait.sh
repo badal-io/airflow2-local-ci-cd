@@ -7,6 +7,7 @@ do
   gcloud beta composer environments run $1 --location $2 dags list 2>&1 | grep $3 && break
   status=$?
   n=$(($n+1))
-  sleep "${5}"
+  sleep $5
 done
+gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"key":"'${6}'"}'
 exit $status

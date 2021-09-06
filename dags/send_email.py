@@ -22,5 +22,5 @@ with DAG(
         task_id="send_email",
         to="zack.amirakulov@badal.io",
         subject="Build status notification",
-        html_content=" <h2> The pipeline build for commit '${SHORT_SHA}' on '${BRANCH_NAME}' has been successful! </h2>",
+        html_content=" <h2> The pipeline build for commit '{{ dag_run.conf['key'] }}' on '${BRANCH_NAME}' has been successful! </h2>",
     )
