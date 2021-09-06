@@ -21,6 +21,6 @@ with DAG(
     send_email_notification = EmailOperator(
         task_id="send_email",
         to="zack.amirakulov@badal.io",
-        subject="Build status notification",
-        html_content=" <h2> The pipeline build for commit '{{ dag_run.conf['key'] }}' on '${BRANCH_NAME}' has been successful! </h2>",
+        subject="Build status notification for commit ID: '{{ dag_run.conf['commit'] }}'",
+        html_content=" <h2> The pipeline build for environment '{{ dag_run.conf['env'] }}' with commit ID: '{{ dag_run.conf['commit'] }}' on '{{ dag_run.conf['branch'] }}' has been successful! </h2>",
     )
