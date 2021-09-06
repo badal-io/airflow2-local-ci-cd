@@ -26,4 +26,3 @@ then
 else
   echo $cmd_output && exit 0
 fi
-done
