@@ -9,5 +9,4 @@ do
   n=$(($n+1))
   sleep "${5}"
 done
-gcloud beta composer environments run $1 --location=$2 dags trigger -- $3
 exit $status
