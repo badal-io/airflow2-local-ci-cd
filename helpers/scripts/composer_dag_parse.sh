@@ -9,15 +9,19 @@ cmd_output=$(</tmp/Output)
 
 
 # - Error matching string
-error_string1='No data found'
-error_string2='Error'
-error_string3='Broken DAG'
-error_string4='No module'
+error_string=('No data found' 'Error' 'Broken DAG' 'No module' 'Cannot execute subcommand')
+#error_string2='Error'
+#error_string3='Broken DAG'
+#error_string4='No module'
+#error_string5='Cannot execute subcommand'
 
 # - Condifiton to skip to the next step if no error string mathces
-if [[ "$cmd_output" == *"$error_string1"* ]] || [[ "$cmd_output" == *"$error_string2"* ]]  || [[ "$cmd_output" == *"$error_string3"* ]] || [[ "$cmd_output" == *"$error_string4"* ]]
-then
-  echo " >>>>>  NO DAGS PARSED - see reason(s) below: <<<<<<" && $cmd_output && exit 1
-else
-  echo $cmd_output && exit 0
-fi
+for item in $error_string
+do
+  if [[ "$cmd_output" == *"$item"* ]] # || [[ "$cmd_output" == *"$error_string2"* ]]  || [[ "$cmd_output" == *"$error_string3"* ]] || [[ "$cmd_output" == *"$error_string4"* ]]
+  then
+    echo " >>>>>  NO DAGS PARSED - see reason(s) below: <<<<<<" && $cmd_output && exit 1
+  else
+    echo $cmd_output && exit 0
+  fi
+done
