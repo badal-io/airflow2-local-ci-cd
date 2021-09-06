@@ -1,3 +1,2 @@
 core-dags_are_paused_at_creation=false,
-email-email_backend=airflow.providers.sendgrid.utils.emailer.send_email,
-core-load_examples=true
+email-email_backend=airflow.providers.sendgrid.utils.emailer.send_email
