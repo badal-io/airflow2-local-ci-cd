@@ -265,7 +265,7 @@ steps:
 # - Run a test DAG & send email
   # [START send-email]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-    waitFor: ['wait-dag]']
+    waitFor: ['wait-dag']
     entrypoint: 'gcloud'
     args:
           [
