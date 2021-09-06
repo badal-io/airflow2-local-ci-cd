@@ -175,8 +175,8 @@ steps:
     id: 'lint-code'
   # [END lint-code]
 
-
-# Stage AirflowVariables.json to data directory to be synced to workers.
+# Stage composer-airflow-vars.json to data directory.
+  # [START stage-airflow-variables]
   - name: 'google/cloud-sdk'
     waitFor: ['lint-code']
     entrypoint: 'gcloud'
@@ -190,22 +190,23 @@ steps:
           ]
     dir: './variables'
     id: 'stage-airflow-variables'
+  # [END stage-airflow-variables]
 
-
-  # Import AirflowVariables.json
+  # Import Airflow Variables fomr the file.
+  # [START import-airflow-variables]
   - name: 'google/cloud-sdk'
     waitFor: ['stage-airflow-variables']
     entrypoint: 'gcloud'
     args:
           [
             'beta', 'composer', 'environments', 'run',
-            '--location=${_COMPOSER_REGION}',
             '${_COMPOSER_ENV_NAME}',
+            '--location=${_COMPOSER_REGION}',
             'variables', '--',
-            '--import', '/home/airflow/gcs/data/config/composer-airflow-vars.json'
+            'import', '/home/airflow/gcs/data/config/composer-airflow-vars.json'
           ]
     id: 'import-airflow-variables'
-
+  # [END import-airflow-variables]
 
 # - Update variables.
   # [START update-vars]
@@ -278,7 +279,7 @@ steps:
     id: 'sync-dags'
   # [END sync-dags]
 
-# - Check if a DAG is ready to send an email
+# - Check if the "SEND_MAIL" DAG is ready to send an email
   # [START wait-dag]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-dags']
