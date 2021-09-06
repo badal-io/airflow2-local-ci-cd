@@ -6,7 +6,7 @@ gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/air
 
 # - Store output string in var
 cmd_output=$(</tmp/Output)
-echo "cmd_output"
+echo $cmd_output
 
 # - Error matching string
 error_string1='No data found'
