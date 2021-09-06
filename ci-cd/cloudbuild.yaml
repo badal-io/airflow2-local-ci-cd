@@ -5,7 +5,7 @@ substitutions:
   _GCP_PROJECT_ID: badal-sandbox-309813
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
-  _COMPOSER_VARS_FILE: composer-vars
+  _COMPOSER_VARS_FILE: composer-env-vars
   _COMPOSER_CONF_FILE: composer-config
   _DAG_TO_EMAIL: send_email
   #_AIRFLOW_VERSION: '2.1.1'      # Declared in docker/Dockerfile-CI
@@ -175,10 +175,42 @@ steps:
     id: 'lint-code'
   # [END lint-code]
 
+
+# Stage AirflowVariables.json to data directory to be synced to workers.
+  - name: 'google/cloud-sdk'
+    waitFor: ['lint-code']
+    entrypoint: 'gcloud'
+    args:
+          [
+            'composer', 'environments', 'storage', 'data', 'import',
+            '--location=${_COMPOSER_REGION}',
+            '--environment=${_COMPOSER_ENV_NAME}',
+            '--source','composer-airflow-vars.json',
+            '--destination', 'config'
+          ]
+    dir: './variables'
+    id: 'stage-airflow-variables'
+
+
+  # Import AirflowVariables.json
+  - name: 'google/cloud-sdk'
+    waitFor: ['stage-airflow-variables']
+    entrypoint: 'gcloud'
+    args:
+          [
+            'beta', 'composer', 'environments', 'run',
+            '--location=${_COMPOSER_REGION}',
+            '${_COMPOSER_ENV_NAME}',
+            'variables', '--',
+            '--import', '/home/airflow/gcs/data/config/composer-airflow-vars.json'
+          ]
+    id: 'import-airflow-variables'
+
+
 # - Update variables.
   # [START update-vars]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    waitFor: ['lint-code']
+    waitFor: ['import-airflow-variables']
     entrypoint: 'bash'
     args:
           [

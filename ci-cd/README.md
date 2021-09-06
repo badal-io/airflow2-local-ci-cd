@@ -13,11 +13,11 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 2. Grant all necessary permissions to a `Cloud Build service account`
 
-3. Add environment variables for Composer Env to the `variables/composer-vars` file (comma separated)
+3. Add environment variables for Composer Env to the `variables/composer-env-vars` file (comma separated)
 
    Example:  `FOO=BAR`
 
-3. Add environment variables for Composer Airflow to the `variables/composer-vars` file (comma separated)
+3. Add environment variables for Composer Airflow to the `variables/composer-airflow-vars` file (comma separated)
 
    Example:  `AIRFLOW_VAR_FOO=BAR`
 
