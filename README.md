@@ -104,7 +104,7 @@
 
   - Adapt and install Plugins into the `plugins` folder
 
-  - Add variables to Airflow: `variables\airflow-vars.json` file
+  - Add variables to Airflow: `variables\docker-airflow-vars.json` file
 
   - Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
 
