@@ -13,19 +13,15 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 2. Grant all necessary permissions to a `Cloud Build service account`
 
-3. Add environment variables for Composer Env to the `variables/composer-env-vars` file (comma separated)
+3. To add <ins>environment variables</ins> to Composer Env, update the `variables/composer-env-vars` file with your key-value pairs (comma separated). Example:  `FOO=BAR`
 
-   Example:  `FOO=BAR`
+4. To add <ins>Airflow variables</ins> for Compose, updatethe `variables/composer-airflow-vars.json` ith your key-value pairs (comma separated). Example:  `"key":"value"`
 
-3. Add environment variables for Composer Airflow to the `variables/composer-airflow-vars` file (comma separated)
+5. Malually add secrets as environment variables via the Compose UI - ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
 
-   Example:  `AIRFLOW_VAR_FOO=BAR`
+6. Add your Py dependencies to the `docker/requirements-composer.txt` file
 
-4. Malually add secrets as variables via the Compose UI - ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
-
-5. Add your Py dependencies to the `docker/requirements-composer.txt` file
-
-6. Add your custom configuration lines to the `ci-cd/composer-config` file (comma separated)
+7. Add your custom configuration lines to the `ci-cd/composer-config` file (comma separated)
 
 <br/>
 
