@@ -9,14 +9,14 @@ cmd_output=$(</tmp/Output)
 
 
 # - Error matching string
-error_string=('No data found' 'Error' 'Broken DAG' 'No module' 'Cannot execute subcommand')
+declare -a error_string=("No data found" "Error" "Broken DAG" "No module" "Cannot execute subcommand")
 #error_string2='Error'
 #error_string3='Broken DAG'
 #error_string4='No module'
 #error_string5='Cannot execute subcommand'
 
 # - Condifiton to skip to the next step if no error string mathces
-for item in $error_string
+for item in "${error_string[@]}"
 do
   if [[ "$cmd_output" == *"$item"* ]] # || [[ "$cmd_output" == *"$error_string2"* ]]  || [[ "$cmd_output" == *"$error_string3"* ]] || [[ "$cmd_output" == *"$error_string4"* ]]
   then

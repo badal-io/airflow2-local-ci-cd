@@ -2,12 +2,10 @@
 
 # - Update Airflow configurtion
 #gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) || exit 0
-
-gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) --async 2> /tmp/Output
+gcloud composer environments update $1 --location=$2 $3=$(tr -d "\n\r" < $4) 2> /tmp/Output
 
 # - Store the error string in var
 cmd_output=$(</tmp/Output)
-
 
 # - Error matching string to skip to the next step
 error_string1='INVALID_ARGUMENT: No change in configuration.'
