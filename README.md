@@ -12,6 +12,8 @@
 
 ## 2. Dependencies & prerequisities for a local PC or cloud VM:
 
+<strong> <ins> Before working with ypur local development enviroment fork the repository so you can have your own branch of developemnt and custom changes.</ins><strong>
+
 ### 2.1 &nbsp; GCP Cloud Shell:
 
 <strong> <ins>Note:</ins> &nbsp; GCP Cloud Shell has several limitations. Everytime when a shell session is expired or closed, you have to re-run the Airflow initializaiton steps given in the section #4 (step 4.1) </strong>
