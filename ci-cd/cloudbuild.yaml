@@ -296,6 +296,22 @@ steps:
     id: 'send-email'
  # [END send-email]
 
+# - Run a test DAG & send email
+  # [START send-email1]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    waitFor: ['send-email']
+    entrypoint: 'gcloud'
+    args:
+          [
+            'beta', 'composer', 'environments', 'run',
+            '${_COMPOSER_ENV_NAME}',
+            '--location', '${_COMPOSER_REGION}',
+            'dags', 'trigger', '--',
+            '${_DAG_TO_EMAIL}', '--conf', 'key:${_COMPOSER_ENV_NAME}'
+          ]
+    id: 'send-email'
+  # [END send-email1]
+
 timeout: 3600s
 images:
   - 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'

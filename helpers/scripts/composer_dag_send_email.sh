@@ -13,7 +13,7 @@ done
 
 # - Run the DAG
 #gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"env":"'${1}'","commit":"'${6}'","branch":"'${7}'"}'
-gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"key":"'${1}'"}'
+#gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"key":"'${1}'"}'
 
 
 exit $status
