@@ -16,13 +16,9 @@ error_string4='No module'
 error_string5='Cannot execute subcommand'
 
 # - Condifiton to skip to the next step if no error string mathces
-if [[ "$cmd_output" == *"$error_string1"* ]] || \
-   [[ "$cmd_output" == *"$error_string2"* ]] || \
-   [[ "$cmd_output" == *"$error_string3"* ]] || \
-   [[ "$cmd_output" == *"$error_string4"* ]] || \
-   [[ "$cmd_output" == *"$error_string5"* ]]
+if [[ "$cmd_output" == *"$error_string1"* ]] || [[ "$cmd_output" == *"$error_string2"* ]] || [[ "$cmd_output" == *"$error_string3"* ]] || [[ "$cmd_output" == *"$error_string4"* ]] || [[ "$cmd_output" == *"$error_string5"* ]]
 then
-  echo " >>>>>  NO DAGS PARSED - see reason(s) below: <<<<<<" && $cmd_output && exit 1
+  echo ">>>>>  NO DAGS PARSED  <<<<<<, see reason(s) below:" && $cmd_output && exit 1
 else
   echo $cmd_output && exit 0
 fi
