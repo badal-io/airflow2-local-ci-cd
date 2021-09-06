@@ -9,7 +9,7 @@ cmd_output=$(</tmp/Output)
 
 
 # - Error matching string
-error_string1='No data found'
+error_string1='tututu'
 error_string2='Error'
 error_string3='Broken DAG'
 error_string4='No module'
