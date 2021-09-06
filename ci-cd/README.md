@@ -15,7 +15,7 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 3. Add variables to Airflow to the `variables/composer-vars` file
 
-4. Add malually secrets as variables viathe Compose UI.
+4. Malually add secrets as variables viathe Compose UI.
 
 5. Set variables that contain secrets and API keys to GCP Composer via User Interface or use GCP Secret manager
 
