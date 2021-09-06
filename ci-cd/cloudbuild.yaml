@@ -307,7 +307,7 @@ steps:
             '${_COMPOSER_ENV_NAME}',
             '--location', '${_COMPOSER_REGION}',
             'dags', 'trigger', '--',
-            '${_DAG_TO_EMAIL}', '--conf', 'key:${_COMPOSER_ENV_NAME}'
+            '${_DAG_TO_EMAIL}'
           ]
     id: 'send-email1'
   # [END send-email1]
