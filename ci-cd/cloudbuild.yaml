@@ -309,7 +309,7 @@ steps:
             'dags', 'trigger', '--',
             '${_DAG_TO_EMAIL}', '--conf', 'key:${_COMPOSER_ENV_NAME}'
           ]
-    id: 'send-email'
+    id: 'send-email1'
   # [END send-email1]
 
 timeout: 3600s
