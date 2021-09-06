@@ -255,8 +255,9 @@ steps:
 
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
-  - name: 'gcr.io/cloud-builders/gsutil'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-PyPi']
+    entrypoint: 'gsutil'
     args:
           [
             'rsync', '-r', '-c', '-d',
@@ -268,8 +269,9 @@ steps:
 
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
-  - name: 'gcr.io/cloud-builders/gsutil'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['sync-plugins']
+    entrypoint: 'gsutil'
     args:
           [
             'rsync', '-r', '-c', '-d',
@@ -281,7 +283,7 @@ steps:
 
 # - Run a test DAG & send email
   # [START send-email]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['sync-dags']
     entrypoint: 'bash'
     args:
@@ -298,7 +300,7 @@ steps:
 
 # - Run a test DAG & send email
   # [START send-email1]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['send-email']
     entrypoint: 'gcloud'
     args:
