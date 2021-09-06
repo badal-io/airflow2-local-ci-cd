@@ -279,37 +279,22 @@ steps:
     id: 'sync-dags'
   # [END sync-dags]
 
-# - Check if the "SEND_MAIL" DAG is ready to send an email
-  # [START wait-dag]
+# - Run a test DAG & send email
+  # [START send-email]
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     waitFor: ['sync-dags']
     entrypoint: 'bash'
     args:
           [
-            'composer_dag_wait.sh',
+            'composer_dag_send_email.sh',
             '${_COMPOSER_ENV_NAME}',
             '${_COMPOSER_REGION}',
-            '${_DAG_TO_EMAIL}', '6', '20', '${SHORT_SHA}'
+            '${_DAG_TO_EMAIL}', '6', '20',
+            '${SHORT_SHA}', '${BRANCH_NAME}'
           ]
     dir: './helpers/scripts'
     id: 'wait-dag'
-  # [END wait-dag]
-
-# - Run a test DAG & send email
-  # [START send-email]
-#  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-#    waitFor: ['wait-dag']
-#    entrypoint: 'gcloud'
-#    args:
-#          [
-#            'beta', 'composer', 'environments', 'run',
-#            '${_COMPOSER_ENV_NAME}',
-#            '--location', '${_COMPOSER_REGION}',
-#            'dags', 'trigger', '--',
-#            '${_DAG_TO_EMAIL}'
-#          ]
-#    id: 'send-email'
-  # [END send-email]
+ # [END send-email]
 
 timeout: 3600s
 images:
