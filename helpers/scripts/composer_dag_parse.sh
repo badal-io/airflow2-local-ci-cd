@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # - List DAGs
-#gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/airflow/gcs/plugins/test-dags/$3 1> /tmp/Output
-gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/airflow/gcs/plugins/test-dags/$3 >> /tmp/Output 2>&1
+gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/airflow/gcs/plugins/test-dags/$3 1> /tmp/Output
+#gcloud beta composer environments run $1 --location=$2 dags list -- -S /home/airflow/gcs/plugins/test-dags/$3 >> /tmp/Output 2>&1
 
 # - Store output string in var
 cmd_output=$(</tmp/Output)
