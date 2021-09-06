@@ -293,7 +293,7 @@ steps:
             '${SHORT_SHA}', '${BRANCH_NAME}'
           ]
     dir: './helpers/scripts'
-    id: 'wait-dag'
+    id: 'send-email'
  # [END send-email]
 
 timeout: 3600s
