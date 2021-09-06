@@ -9,18 +9,29 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 1. Declare your `Project ID` variable in the cloudbuild.yaml file:
 
-`_GCP_PROJECT_ID: <my_project_1>`
+    `_GCP_PROJECT_ID: <my_project_1>`
 
 2. Grant all necessary permissions to a `CLoud Build service account`
 
 3. Add variables to Airflow to the `variables/composer-vars` file
 
-4. Set variables that contain secrets and API keys to GCP Composer via User Interface or use GCP Secret manager
+4. Add malually secrets as variables viathe Compose UI.
 
-5. Add your Py dependencies to the `docker/requirements-airflow.txt` file
+5. Set variables that contain secrets and API keys to GCP Composer via User Interface or use GCP Secret manager
 
-6. Add your custom configuration lines to the `ci-cd/composer-config` file
+6. Add your Py dependencies to the `docker/requirements-composer.txt` file
 
+7. Add your custom configuration lines to the `ci-cd/composer-config` file
+
+<br/>
+
+## Email notifications with SendGrid
+
+1. Under Composer configuration, add the following environment variables:
+  - SENDGRID_MAIL_FROM: no_reply_@your-domain.com
+  - SENDGRID_API_KEY: <API key generated from SendGrid>
+
+2. Set a recipient email address in the `dags/send_email.py` file, line: `to="<recepient_email>"`. An email will be sent upon succesfull pipeline build.
 
 <br/>
 
