@@ -31,7 +31,7 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
   - SENDGRID_MAIL_FROM: no_reply_@your-domain.com
   - SENDGRID_API_KEY: <API key generated from SendGrid>
 
-2. Set a recipient email address in the `dags/send_email.py` file, line: `to="<recepient_email>"`. An email will be sent upon succesfull pipeline build.
+2. Set a recipient email address in the `dags/send_email.py` file, the line: `to="<recepient_email>"`. An email will be sent to this address upon a succesfull pipeline build.
 
 <br/>
 
