@@ -145,10 +145,13 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 15. <strong> id: `sync-plugins` </strong>
    - Syncs plugins from repo into Composer
 
-16. <strong> id: `sync-dags` </strong>
+16. <strong> id: `sync-test-dags` </strong>
+   - Syncs test dags from data dir into Composer dags dir. For example: "send-email" dag.
+
+17. <strong> id: `sync-dags` </strong>
    - Syncs dags from repo into Composer
 
-17. <strong> id: `send-email` </strong>
+18. <strong> id: `send-email` </strong>
    - Sends an email if the build has been successfull
 
 </br>
@@ -172,5 +175,6 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 | update-config  	| Update Config in Composer              	|    Do   	|    Do    	|
 | update-PyPi    	| Update PyPi packages in Composer       	|    Do   	|    Do    	|
 | sync-plugins   	| Sync plugins with Composer GCS         	|    Do   	|    Do    	|
+| sync-test-dags  | Sync test tags with Composer GCS        |    Do   	|    Do    	|
 | sync-dags      	| Sync tags with Composer GCS            	|    Do   	|    Do    	|
 | send-email   	| Send an email upon successfull build   	|    Do   	|    Do   	|

@@ -267,10 +267,24 @@ steps:
     id: 'sync-plugins'
   # [END sync-plugins]
 
+# - Sync test DAGs.
+  # [START sync-test-dags]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['sync-plugins']
+    entrypoint: 'gsutil'
+    args:
+          [
+            'rsync', '-r', '-c', '-d',
+            'data/test-dags/',
+            'gs://${_COMPOSER_INPUT_BUCKET}/dags'
+          ]
+    id: 'sync-test-dags'
+  # [END sync-test-dags]
+
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    waitFor: ['sync-plugins']
+    waitFor: ['sync-test-dags']
     entrypoint: 'gsutil'
     args:
           [
