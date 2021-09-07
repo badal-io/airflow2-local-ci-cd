@@ -122,7 +122,7 @@
 
 <br/>
 
-## 4. First-time initialization and run
+## 4. First-time initialization and service start:
 
   - 4.1 Open a terminal and run the following commands (use <ins>`sudo`</ins> before the command for <ins>GCP Cloud Shell</ins> and <ins>Windows WSL</ins> VMs):
 
@@ -130,25 +130,33 @@
 
     <ins>Note:</ins> &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
-  - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
+  - 4.2 Open a new terminal window and run the command to make sure that all 3 containers (webserver, sheduler, postgress_db)are runnning and healthy:
+
+        docker ps
+
+  - 4.3 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
         ./helpers/scripts/gcp-auth.sh
 
-      <ins>Note:</ins> &nbsp; NOT required for the GCP Cloud Shell option, skip this step
+      <ins>Note:</ins> &nbsp; NOT required if you are workign via GCP Cloud Shell option, you can skip this step.
 
-  - <strong> Airflow 2 is ready! </strong>
+  - <strong> Airflow 2 is UP and Running! </strong>
 
 <br/>
 
 ## 5. Commands for operations & maintenance:
 
-  - To start Airflow and all services:
+  - To check if all 3 containers (webserver, sheduler, postgress_db) are runnign and healty:
 
-        docker-compose up
+        docker ps
 
   - To stop all Airflow containers (via a new terminal session):
 
         docker-compose down
+
+  - To start Airflow and all services:
+
+        docker-compose up
 
   - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
 
