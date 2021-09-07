@@ -1,6 +1,6 @@
 ## Working with GCP Cloud Shell
 
-For those who have "local PC restrictions", the Airflow 2 environment can be deployed and run in GCP Cloud Shell/Editor - which is an ephemeral cloud virtual machine accessible from the browser. Consider the follwing points before workign with Cloud Shell/Editor.
+For those who have "local PC restrictions", the Airflow 2 environment can be deployed and run in GCP Cloud Shell/Editor - which is an ephemeral cloud virtual machine accessible from a web browser. Consider the follwing points before workign with Cloud Shell/Editor.
 
 - The virtual machine instance that backs your Cloud Shell session is not permanently allocated to a Cloud Shell session and terminates if the session is <strong> inactive for 20 minutes </strong>. Once the session is terminated, any modifications that you made to it outside your $HOME directory are lost.
 
