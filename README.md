@@ -116,7 +116,7 @@
 
 ### 3.2 GCP Project ID for GCP Connection
 
-  - Set the projet-id varibale in the `variables/docker-env-vars` file:
+  - Set the projet-id varibale in the `variables/docker-env-vars` or `variables/docker-env-secrets` file:
 
      `GCP_PROJECT_ID='<project-id here>'`
 
