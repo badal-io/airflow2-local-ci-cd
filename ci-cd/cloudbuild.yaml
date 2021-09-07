@@ -2,7 +2,7 @@
 substitutions:
   #_COMPOSER_ENV_NAME: test-env   # Declared in GCP cloudbuild trigger
   #_DEV_ENV_NAME: test_env        # Declared in GCP cloudbuild trigger
-  _GCP_PROJECT_ID: badal-sandbox-309813
+  _GCP_PROJECT_ID: badal-sandbox-309813  # << Add your prohect id here
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
   _COMPOSER_VARS_FILE: composer-env-vars
@@ -110,9 +110,9 @@ steps:
     id: "int-test"
   # [END int-test]
 
-# Sync DAGs to 'data' dir for DAG parsing test
+# Sync DAGs to 'data' dir for DAG parsing test.
   # [START stage-for-smoke-test]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['int-test']
     entrypoint: 'gsutil'
     args:
@@ -126,7 +126,7 @@ steps:
 
 # - Run DAG parsing test.
   # [START dag-parse-smoke-test]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['stage-for-smoke-test']
     entrypoint: 'bash'
     args:
@@ -177,7 +177,7 @@ steps:
 
 # Stage composer-airflow-vars.json to data directory.
   # [START stage-airflow-variables]
-  - name: 'google/cloud-sdk'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['lint-code']
     entrypoint: 'gcloud'
     args:
@@ -194,7 +194,7 @@ steps:
 
 # Import Composer Airflow Variables from the file.
   # [START import-airflow-variables]
-  - name: 'google/cloud-sdk'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['stage-airflow-variables']
     entrypoint: 'gcloud'
     args:
