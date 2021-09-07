@@ -15,6 +15,6 @@ done
 gcloud beta composer environments run $1 --location $2 dags unpause -- $3
 
 # - Run the DAG "send_email". The email contains commit ID (passed as a parameter)
-gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"commit":"'${6}'"}'
+gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"commit-id":"'${6}'"}'
 
 exit $status
