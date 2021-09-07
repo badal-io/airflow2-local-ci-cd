@@ -2,4 +2,4 @@ pytest==5.3.5
 pandas
 pytest-testconfig>=0.2.0
 pytest-airflow>=0.0.3
-apache-airflow-providers-sendgrid=2.0.1
+apache-airflow-providers-sendgrid==2.0.1
