@@ -2,7 +2,7 @@
 substitutions:
   #_COMPOSER_ENV_NAME: test-env   # Declared in GCP cloudbuild trigger
   #_DEV_ENV_NAME: test_env        # Declared in GCP cloudbuild trigger
-  _GCP_PROJECT_ID: badal-sandbox-309813  # << Add your project-id here
+  _GCP_PROJECT_ID: <gcp_project_id>  # << Add your project-id here
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
   _COMPOSER_VARS_FILE: composer-env-vars
