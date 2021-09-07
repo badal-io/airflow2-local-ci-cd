@@ -1,7 +1,7 @@
 # - Airflow Env variables.
 substitutions:
-  #_COMPOSER_ENV_NAME: test-env   # Declared in a gcp cloudbuild trigger
-  #_DEV_ENV_NAME: test_env        # Declared in a gcp cloudbuild trigger
+  #_COMPOSER_ENV_NAME: test-env   # Declared in GCP cloudbuild trigger
+  #_DEV_ENV_NAME: test_env        # Declared in GCP cloudbuild trigger
   _GCP_PROJECT_ID: badal-sandbox-309813
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
