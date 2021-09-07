@@ -3,9 +3,9 @@
 
 This project is an easy-to-use development environment for Apache Airflow version 2. It can be run locally on a variety of OS platforms with simple steps for spinning up Airflow. The project can be integrated into a CI/CD DATA pipeline using GCP Cloud Build to build, test, and deploy workflows into GCP Cloud Composer. The project is meant to address several "infrastructure challenges" that Airflow developers experience and allows them to focus on workflow development rather than platform installation/configuration.
 
-The environment is available for local use using Docker containers and Docker-Compose. For most of the deployment options, these are the only prerequisites. For those who have "local PC restrictions", the code has been also successfully tested within the GCP Cloud Shell - which is an ephemeral cloud virtual machine accessible from the browser.
+The environment is available for local use using Docker containers and Docker-Compose. For most of the deployment options, these are the only prerequisites. For those who have "local PC restrictions", the code has been also successfully tested within the GCP Cloud Shell.
 
-When you run Airflow containers locally, your workspace is exposed to the development environment, so it becomes convenient to maintain and synchronize all your work in one place. You can also run integration and unit tests within the environment with all the dependencies and variables you included.
+When you run Airflow containers, your workspace is exposed to the development environment, so it becomes convenient to maintain and synchronize all your work in one place. You can also run integration and unit tests within the environment with all the dependencies and variables you included.
 
 The CI/CD part of the environment has native integration with the "local development" and allows developers to automatically stage, test and deploy their code into a production environment. The DATA pipeline is adapted for the GCP Cloud Build with the GitOps approach as a core pipeline trigger.
 
