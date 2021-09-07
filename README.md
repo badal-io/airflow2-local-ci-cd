@@ -8,7 +8,7 @@
 - Code editiing/Development environment: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
-<ins>Note:</ins> &nbsp; Before working with your local development environment <strong>fork</strong> the repository, so you can have your own branch for development and custom changes.
+<ins>Note:</ins> &nbsp; Before working with your local development environment <ins><strong>fork</strong></ins> the repository, so you can have your own branch for development and custom changes.
 
 <br/>
 
