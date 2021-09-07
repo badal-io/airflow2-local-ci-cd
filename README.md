@@ -124,11 +124,11 @@
 
 ## 4. First-time initialization and run
 
-  - 4.1 Open a terminal and run the following commands (use `sudo` before the command for GCP Cloud Shell and Windows WSL VMs):
+  - 4.1 Open a terminal and run the following commands (use <ins>`sudo`</ins> before the command for <ins>GCP Cloud Shell</ins> and <ins>Windows WSL</ins> VMs):
 
         ./helpers/scripts/init_airflow.sh
 
-    <ins>Note:</ins> &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended
+    <ins>Note:</ins> &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
   - 4.2 Authentificate for GCP services, run the following script and perform the gcp authentification:
 
