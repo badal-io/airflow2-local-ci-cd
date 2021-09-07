@@ -33,6 +33,9 @@ This part contains GCP Cloud Build confiugration code that runs the Airflow 2 CI
   - SENDGRID_MAIL_FROM: no_reply_@your-domain.com
   - SENDGRID_API_KEY: <API key generated from SendGrid>
 
+2. Add a configuration line into the compose config file `ci-cd/composer-config` to enable SENDGRID backend:
+  - `email-email_backend=airflow.providers.sendgrid.utils.emailer.send_email`
+
 2. Set a recipient email address in the `dags/send_email.py` file, the line: `to="<recepient_email>"`. An email will be sent to this address upon a succesfull pipeline build.
 
 <br/>
