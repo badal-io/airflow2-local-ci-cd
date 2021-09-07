@@ -209,7 +209,7 @@ steps:
   # [END import-airflow-variables]
 
 # - Update Composer env variables.
-  # [START update-vars]
+  # [START update-env-vars]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['import-airflow-variables']
     entrypoint: 'bash'
@@ -220,13 +220,13 @@ steps:
             '--update-env-variables', '../../variables/${_COMPOSER_VARS_FILE}'
           ]
     dir: './helpers/scripts'
-    id: 'update-vars'
-  # [END update-vars]
+    id: 'update-env-vars'
+  # [END update-env-vars]
 
 # - Update airflow config parameters.
   # [START update-config]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    waitFor: ['update-vars']
+    waitFor: ['update-env-vars']
     entrypoint: 'bash'
     args:
           [
