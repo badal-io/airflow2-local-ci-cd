@@ -22,5 +22,5 @@ with DAG(
         task_id="send_email",
         to="<recipient-email-address>",  # << Recipient email here
         subject="Build status notification",
-        html_content=" <h2> The pipeline build for commit id '{{ dag_run.conf['key'] }}' has been successful! </h2>",
+        html_content=" <h2> The pipeline build for commit id '{{ dag_run.conf['commit'] }}' has been successful! </h2>",
     )
