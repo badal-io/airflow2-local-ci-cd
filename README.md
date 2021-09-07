@@ -1,7 +1,7 @@
 ## Apache Airflow 2 for local development and CI/CD
 =======================================================
 
-&nbsp; This project is an easy-to-use development environment for Apache Airflow version 2. It can be run locally on a variety of OS platforms with simple steps for spinning up Airflow. The project can be integrated into an automated continuous integration/continuous delivery (CI/CD) workflow using GCP Cloud Build to build, test, and deploy workflows into GCP Cloud Composer. The project is meant to address several "infrastructure challenges" that Airflow developers experience and allows them to focus on workflow development rather than platform installation/configuration.
+&nbsp; This project is an easy-to-use development environment for Apache Airflow version 2. It can be run locally on a variety of OS platforms with simple steps for spinning up Airflow. The project can be integrated into an automated continuous integration/continuous delivery (CI/CD) process using GCP Cloud Build to build, test, and deploy workflows into GCP Cloud Composer. The project is meant to address several "infrastructure challenges" that Airflow developers experience and allows them to focus on workflow development rather than platform installation/configuration.
 
 &nbsp; The environment is available for local use using Docker containers and Docker-Compose. For most of the deployment options, these are the only prerequisites required. The code has also been successfully tested within the GCP Cloud Shell/Editor which is an ephemeral cloud Linux instance accessible from a web browser. This may be beneficial for those who have "local PC restrictions" and cannot install docker-engine locally.
 
