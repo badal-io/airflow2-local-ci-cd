@@ -104,7 +104,7 @@ The CI/CD part of the environment has native integration with the "local develop
 
 <br/>
 
-## 3. Dependencies to solve before you go
+## 3. Customizing Airflow Settings
    ### 3.1
 
   - Add your Py dependencies to the `docker/requirements-airflow.txt` file
