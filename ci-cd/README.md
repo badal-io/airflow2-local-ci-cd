@@ -1,7 +1,7 @@
 
 ## GCP Composer CI-CD Pipeline
 
-This project contains GCP cloudbuild confiugration code that run the Airflow 2 CI/CD pipeline.
+This part contains GCP Cloud Build confiugration code that runs the Airflow 2 CI/CD pipeline.
 
 <ins>Note:</ins> &nbsp; Before working with your local development environment <ins><strong>fork</strong></ins> the repository, so you can have your own branch for development and custom changes.
 
