@@ -274,9 +274,9 @@ steps:
     entrypoint: 'gsutil'
     args:
           [
-            'rsync', '-r', '-d',
+            'rsync', '-r', '-c', '-d',
             'data/test-dags/',
-            'gs://${_COMPOSER_INPUT_BUCKET}/dags'
+            'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags'
           ]
     id: 'sync-test-dags'
   # [END sync-test-dags]

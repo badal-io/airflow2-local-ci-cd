@@ -15,6 +15,6 @@ done
 gcloud beta composer environments run $1 --location $2 dags unpause -- $3
 
 # - Run the DAG "semd_email". The email contains commit ID.
-gcloud beta composer environments run $1 --location $2 dags trigger -- $3 --conf '{"key":"'${6}'"}'
+gcloud beta composer environments run $1 --location $2 dags trigger -S /home/airflow/gcs/data/test-dags/ -- $3 --conf '{"key":"'${6}'"}'
 
 exit $status
