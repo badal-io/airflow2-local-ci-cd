@@ -3,6 +3,8 @@
 
 This project contains GCP cloudbuild confiugration code that run the Airflow 2 CI/CD pipeline.
 
+<ins>Note:</ins> &nbsp; Before working with your local development environment <strong>fork<strong> the repository, so you can have your own branch for development and custom changes.
+
 <br/>
 
 ## Prerequisities
@@ -15,9 +17,9 @@ This project contains GCP cloudbuild confiugration code that run the Airflow 2 C
 
 3. To add <ins>environment variables</ins> to Composer Env, update the `variables/composer-env-vars` file with your key-value pairs (comma separated). Example:  `FOO=BAR`
 
-4. To add <ins>Airflow variables</ins> for Compose, updatethe `variables/composer-airflow-vars.json` ith your key-value pairs (comma separated). Example:  `"key":"value"`
+4. To add <ins>Airflow variables</ins> for Compose, update the `variables/composer-airflow-vars.json` with your key-value pairs (comma separated). Example:  `"key":"value"`
 
-5. Malually add secrets as environment variables via the Compose UI - ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
+5. Malually add secrets as environment variables via the Compose UI --> ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
 
 6. Add your Py dependencies to the `docker/requirements-composer.txt` file
 
@@ -90,7 +92,7 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
         example: `_COMPOSER_INPUT_BUCKET = us-central1-test-env-4319fd69-bucket`
 
-    - <strong> _DEV_ENV_NAME =  <em> name of the dev environemt </em> </strong> Note: This is required for proper "IF" condition functioning.
+    - <strong> _DEV_ENV_NAME =  <em> name of the dev environment </em> </strong> <ins>Note:</ins> &nbsp; This is required for proper "If" condition functionality in the cloud build pipeling.
 
         example: `_COMPOSER_INPUT_BUCKET = dev-env`
 
@@ -138,7 +140,7 @@ The CI/CD pipeline automatically builds a container image from committed code, s
    - Adds/Updates configuration lines in Composer. Configuration items should be populated in the `composer/composer-config` file. A list of Airflow config override KEY=VALUE pairs to set. If a config override exists, its value is updated; otherwise, a new config override is created. If no changes in configuration, this step will be skipped. Please note, this step does not remove configuration, this has to be done manually from the Composer UI.
 
 14. <strong> id: `update-PyPi` </strong>
-   - Adds/Updates/Removes PyPi packages in Composer. Items should be populated in the `docker/requirements-airflow.txt` file.
+   - Adds/Updates/Removes PyPi packages in Composer. Items should be populated in the `docker/requirements-composer.txt` file.
 
 15. <strong> id: `sync-plugins` </strong>
    - Syncs plugins from repo into Composer

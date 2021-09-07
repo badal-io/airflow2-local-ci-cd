@@ -8,7 +8,7 @@
 - Code editiing/Development environment: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
-<ins>Note:</ins> &nbsp; Before working with your local development enviroment <strong>fork<strong> the repository so you can have your own branch for development and custom changes.
+<ins>Note:</ins> &nbsp; Before working with your local development environment <strong>fork<strong> the repository, so you can have your own branch for development and custom changes.
 
 <br/>
 
@@ -22,7 +22,7 @@
 
   - 2.1.2 &nbsp; Clone the repo and go to the directory:
 
-        git clone https://github.com/badal-io/airflow2-local.git && cd airflow2-local
+        git clone <'Airflow 2 repository'> && cd airflow2-local
 
   - 2.1.3 &nbsp; In cloud shell, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
 
@@ -53,7 +53,7 @@
 
   - 2.3.3 &nbsp; Clone the repo:
 
-        git clone https://github.com/badal-io/airflow2-local.git
+        git clone <'Airflow 2 repository'>
 
   - 2.3.4 &nbsp; Launch Visual Studio Code and open the folder (Open folder) with the Airflow 2 code
 
@@ -71,7 +71,7 @@
 
   - 2.4.4 &nbsp; In the WSL terminal window go to `/home/airflow` and clone the repo:
 
-        cd /home/airflow && git clone https://github.com/badal-io/airflow2-local.git
+        cd /home/airflow && git clone <'Airflow 2 repository'>
 
   - 2.4.5 &nbsp; On Windows 10, install the latest available version of `Docker Desktop`: https://docs.docker.com/get-docker/
 
