@@ -121,6 +121,8 @@ The CI/CD part of the environment has native integration with the "local develop
 
   - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
 
+  - Optionally add the <ins>send_email.py</ins> dag to the `.airflowignore` file as this dag is only for the CI/CD part (to avoid warnign and error in you local development during unit tests).
+
 <br/>
 
 ### 3.2 GCP Project ID for GCP Connection
