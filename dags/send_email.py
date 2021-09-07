@@ -20,7 +20,7 @@ with DAG(
 ) as dag:
     send_email_notification = EmailOperator(
         task_id="send_email",
-        to="zack.amirakulov@gmail.com",  # << Recipient email here
+        to="zack.amirakulov@badal.io",  # << Recipient email here
         subject="Build status notification",
         html_content=" <h2> The pipeline build for commit id '{{ dag_run.conf['commit-id'] }}' has been successful! </h2>",
     )
