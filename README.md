@@ -1,27 +1,26 @@
 ## Apache Airflow 2 for local development and CI/CD
 =======================================================
 
-This project is an easy-to-use development environment for Apache Airflow version 2. It can be run locally on a variety of OS platforms with simple steps for spinning up Airflow. The project can be integrated into an automated continuous integration/continuous delivery (CI/CD) workflow using GCP Cloud Build to build, test, and deploy workflows into GCP Cloud Composer. The project is meant to address several "infrastructure challenges" that Airflow developers experience and allows them to focus on workflow development rather than platform installation/configuration.
+&nbsp; This project is an easy-to-use development environment for Apache Airflow version 2. It can be run locally on a variety of OS platforms with simple steps for spinning up Airflow. The project can be integrated into an automated continuous integration/continuous delivery (CI/CD) workflow using GCP Cloud Build to build, test, and deploy workflows into GCP Cloud Composer. The project is meant to address several "infrastructure challenges" that Airflow developers experience and allows them to focus on workflow development rather than platform installation/configuration.
 
-The environment is available for local use using Docker containers and Docker-Compose. For most of the deployment options, these are the only prerequisites. The code has also been successfully tested within the GCP Cloud Shell/Editor which is an ephemeral cloud Linux instance accessible from a web browser. This maybe benefitical for those who have "local PC restrictions" and cannot install docker engine locally.
+&nbsp; The environment is available for local use using Docker containers and Docker-Compose. For most of the deployment options, these are the only prerequisites required. The code has also been successfully tested within the GCP Cloud Shell/Editor which is an ephemeral cloud Linux instance accessible from a web browser. This may be beneficial for those who have "local PC restrictions" and cannot install docker-engine locally.
 
-Main features of local development using Docker:
+Main features of local development using Docker & Docker-Compose:
 
-- Your workspace files are alwlays synchronized with docker containers. With use of an IDE program the development process becomes easier and faster.
-
+- Your workspace files are always synchronized with docker containers. With the use of an IDE program, the development process becomes easier and faster.
 - Unit and Integration tests run within a container built from the same image as the Airflow deployment.
 
-This project provides an opinionated Cloud Build CI/CD pipeline for the GCP Cloud Composer service. It nativelly integrates with a "local Airflow" development and allows developers to automatically stage, test and deploy their code into a production environment.
+&nbsp; The project provides an opinionated Cloud Build CI/CD pipeline for the GCP Cloud Composer service. It natively integrates with a "local Airflow" development and allows developers to automatically stage, test and deploy their code into a production environment.
 
 Main features of Cloud Build CI/CD pipeline for Composer environment:
 
-- Container caching - reusing cache of already built images, this speeds up the overall build porcess.
+- Container caching - reusing cache of already built images, speeds up the overall build process.
 - Unit & Integration test as steps in CI stage.
-- DAGs integrity validation (smoke test)
-- Code linting check
-- Custom configuration synchronization: env variables, configuration, PyPi packages
-- Plugin and DAGs deployemnt into COmposer environment.
-- Automatic email nitification upon a succesfull build.
+- DAGs integrity validation (smoke test).
+- Code linting check.
+- Custom configuration: env variables, configuration, PyPi packages.
+- Plugin and DAGs deployment into COmposer environment.
+- Automatic email notification upon a successful build.
 
 
 <br/>
