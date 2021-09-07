@@ -141,7 +141,7 @@ steps:
   # [END dag-parse-smoke-test]
 
 # - Clean up after the smoke test.
-  # [START clean-up-data]
+  # [START clean-up-after-test]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['dag-parse-smoke-test']
     entrypoint: 'gsutil'
@@ -150,13 +150,13 @@ steps:
             '-m', 'rm','-r',
             'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
           ]
-    id: 'clean-up-data-dir'
-  # [END clean-up-data-dir]
+    id: 'clean-up-after-test'
+  # [END clean-up-after-test]
 
 # - Style&Lint code.
   # [START lint-code]
   - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
-    waitFor: ['clean-up-data-dir']
+    waitFor: ['clean-up-after-test']
     entrypoint: 'bash'
     args:
       - '-c'
