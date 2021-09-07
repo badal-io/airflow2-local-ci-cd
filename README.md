@@ -130,7 +130,7 @@
 
     <ins>Note:</ins> &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
-  - 4.2 Open a new terminal window and run the command to make sure that all 3 containers (webserver, sheduler, postgress_db)are runnning and healthy:
+  - 4.2 Open a new terminal window and run the command to make sure that all 3 containers (webserver, scheduler, postgres_db)are runnning and healthy:
 
         docker ps
 
@@ -146,7 +146,7 @@
 
 ## 5. Commands for operations & maintenance:
 
-  - To check if all 3 containers (webserver, sheduler, postgress_db) are runnign and healty:
+  - To check if all 3 containers (webserver, scheduler, postgres_db) are running and healty:
 
         docker ps
 
