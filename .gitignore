@@ -3,3 +3,4 @@ logs*
 *docker-env-secrets*
 *__pycache__*
 *dev_scripts*
+dags/.airflowignore
