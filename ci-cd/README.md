@@ -3,7 +3,7 @@
 
 This project contains GCP cloudbuild confiugration code that run the Airflow 2 CI/CD pipeline.
 
-<ins>Note:</ins> &nbsp; Before working with your local development environment <strong>fork<strong> the repository, so you can have your own branch for development and custom changes.
+<ins>Note:</ins> &nbsp; Before working with your local development environment <strong>fork</strong> the repository, so you can have your own branch for development and custom changes.
 
 <br/>
 
