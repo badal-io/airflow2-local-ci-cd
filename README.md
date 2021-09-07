@@ -170,13 +170,15 @@
 
 <br/>
 
-## 6. Commands for working inside a container:
+## 6. Running commands inside a container:
 
   - To run unit tests navigate to the `tests` directory and run the following command:
 
        `./airflow "test command"`
 
     example:
+
+        cd tests
 
         ./airflow "pytest tests/unit"
 
@@ -185,6 +187,8 @@
      `./airflow "test command"`
 
     example:
+
+        cd tests
 
         ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
 
