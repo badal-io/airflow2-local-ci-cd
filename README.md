@@ -178,17 +178,13 @@
 
     example:
 
-        cd tests
-
-        ./airflow "pytest tests/unit"
+        cd tests && ./airflow "pytest tests/unit"
 
   - To run integration tests with GCP navigate to the `tests` directory and run the following command:
 
      `./airflow "test command"`
 
     example:
-
-        cd tests
 
         ./airflow "pytest --tc-file tests/integration/config.ini -v tests/integration"
 
