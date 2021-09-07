@@ -20,13 +20,13 @@
 
   - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
 
-  - 2.1.2 &nbsp; Clone the repo and go to the directory:
+  - 2.1.2 &nbsp; Open a terminal session `(Menu Terminal -- New Terminal)` and clone the repo, go to the directory:
 
         git clone <'Airflow 2 repository'> && cd airflow2-local
 
-  - 2.1.3 &nbsp; In cloud shell, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
+  - 2.1.3 &nbsp; In the cloud shell UI, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
 
-  - 2.1.4 &nbsp; Open a new terminal `(Menu Terminal -- New Terminal)` and run the following commands to initialize the environment and install prequisities:
+  - 2.1.4 &nbsp; Run the following commands to initialize the environment and install prequisities:
 
         chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh
 
