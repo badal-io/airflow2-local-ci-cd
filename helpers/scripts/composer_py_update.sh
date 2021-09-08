@@ -2,11 +2,9 @@
 
 # - Update PyPi packages
 #gcloud composer environments update $1 --location=$2 --clear-pypi-packages
-#gcloud composer environments update $1 --location=$2 $3=$4  || exit 0
-
 gcloud composer environments update $1 --location=$2 $3=$4 2> /tmp/Output
 
-# - Store the rror string in var
+# - Store the error string in var
 cmd_output=$(</tmp/Output)
 
 
@@ -15,7 +13,7 @@ error_string1='INVALID_ARGUMENT: No change in configuration.'
 error_string2='Cannot update Environment with no update type specified'
 no_error='..done.'
 
-# - Condifiton to sip to the next step if the error string mathces
+# - Condifiton to skip to the next step if the error string mathces
 if [[ "$cmd_output" == *"$error_string1"* ]] || [[ "$cmd_output" == *"$error_string2"* ]]
 then
   echo " >>>>>  NO CHANGE IN THE CONFIGURATION, SKIPPING TO THE NEXT STEP <<<<<<" && exit 0

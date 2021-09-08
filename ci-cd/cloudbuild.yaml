@@ -1,13 +1,14 @@
 # - Airflow Env variables.
 substitutions:
-  #_COMPOSER_ENV_NAME: test-env   # The var is declared in GCP cloudbuild triggers.
-  #_DEV_ENV_NAME: test_env        # This varibale must be declared to make sure "IF" conditions wor propoerly (declared in trigger)
-  _GCP_PROJECT_ID: badal-sandbox-309813
+  #_COMPOSER_ENV_NAME: test-env   # Declared in GCP cloudbuild trigger
+  #_DEV_ENV_NAME: test_env        # Declared in GCP cloudbuild trigger
+  _GCP_PROJECT_ID: <gcp_project_id>  # << Add your project-id here
   _COMPOSER_REGION: us-central1
   _COMPOSER_BUILD_IMG_NAME: airflow2_cicd:latest
-  _COMPOSER_VARS_FILE: composer-vars
+  _COMPOSER_VARS_FILE: composer-env-vars
   _COMPOSER_CONF_FILE: composer-config
-  #_AIRFLOW_VERSION: '2.1.1'      # The var is declared in docker/Dockerfile-CI
+  _DAG_TO_EMAIL: send_email
+  #_AIRFLOW_VERSION: '2.1.1'      # Declared in docker/Dockerfile-CI
   _PYTHON_VERSION: '3.8'
 
 steps:
@@ -25,7 +26,7 @@ steps:
     id: 'env name'
   # [END env name]
 
-# - Pull the existing Airflow build from GCR if any
+# - Pull the existing Airflow build from GCR if any.
   # [START pull-airflow2]
   - name: 'gcr.io/cloud-builders/docker'
     waitFor: ['-']
@@ -80,7 +81,6 @@ steps:
         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
         then
           pytest tests/unit
-          py3clean tests/unit
         else
           echo "***************************** unit-test *******************************"
           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
@@ -100,7 +100,6 @@ steps:
         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
         then
           pytest --tc-file ./tests/integration/config.ini -v ./tests/integration
-          py3clean ./tests/integration
         else
           echo "***************************** integration-test ****************************"
           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
@@ -109,10 +108,53 @@ steps:
     id: "int-test"
   # [END int-test]
 
+# Sync DAGs to 'data' dir for DAG parsing test.
+  # [START stage-for-smoke-test]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['int-test']
+    entrypoint: 'gsutil'
+    args:
+          [
+            'rsync','-r', '-d',
+            'dags/',
+            'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/${BUILD_ID}'
+          ]
+    id: 'stage-for-smoke-test'
+  # [END stage-for-smoke-test]
+
+# - Run DAG parsing test.
+  # [START dag-parse-smoke-test]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['stage-for-smoke-test']
+    entrypoint: 'bash'
+    args:
+          [
+            'composer_dag_parse.sh',
+            '${_COMPOSER_ENV_NAME}',
+            '${_COMPOSER_REGION}',
+            '${BUILD_ID}'
+          ]
+    dir: './helpers/scripts'
+    id: 'dag-parse-smoke-test'
+  # [END dag-parse-smoke-test]
+
+# - Clean up after the smoke test.
+  # [START clean-up-after-test]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['dag-parse-smoke-test']
+    entrypoint: 'gsutil'
+    args:
+          [
+            '-m', 'rm','-r',
+            'gs://${_COMPOSER_INPUT_BUCKET}/data/test-dags/$BUILD_ID'
+          ]
+    id: 'clean-up-after-test'
+  # [END clean-up-after-test]
+
 # - Style&Lint code.
   # [START lint-code]
   - name: 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
-    waitFor: ['int-test']
+    waitFor: ['clean-up-after-test']
     entrypoint: 'bash'
     args:
       - '-c'
@@ -131,26 +173,61 @@ steps:
     id: 'lint-code'
   # [END lint-code]
 
-# - Update variables.
-  # [START update-vars]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+# Stage composer-airflow-vars.json to data directory.
+  # [START stage-airflow-variables]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['lint-code']
+    entrypoint: 'gcloud'
+    args:
+          [
+            'composer', 'environments', 'storage', 'data', 'import',
+            '--location=${_COMPOSER_REGION}',
+            '--environment=${_COMPOSER_ENV_NAME}',
+            '--source','composer-airflow-vars.json',
+            '--destination', 'config'
+          ]
+    dir: './variables'
+    id: 'stage-airflow-variables'
+  # [END stage-airflow-variables]
+
+# Import Composer Airflow Variables from the file.
+  # [START import-airflow-variables]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['stage-airflow-variables']
+    entrypoint: 'gcloud'
+    args:
+          [
+            'beta', 'composer', 'environments', 'run',
+            '${_COMPOSER_ENV_NAME}',
+            '--location=${_COMPOSER_REGION}',
+            'variables', '--',
+            'import', '/home/airflow/gcs/data/config/composer-airflow-vars.json'
+          ]
+    id: 'import-airflow-variables'
+  # [END import-airflow-variables]
+
+# - Update Composer env variables.
+  # [START update-env-vars]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['import-airflow-variables']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_vars_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-env-variables', '../../variables/${_COMPOSER_VARS_FILE}'
           ]
     dir: './helpers/scripts'
-    id: 'update-vars'
-  # [END update-vars]
+    id: 'update-env-vars'
+  # [END update-env-vars]
 
 # - Update airflow config parameters.
   # [START update-config]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-    waitFor: ['update-vars']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['update-env-vars']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_conf_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-airflow-configs', '../../ci-cd/${_COMPOSER_CONF_FILE}'
@@ -161,10 +238,11 @@ steps:
 
 # - Update PyPi packages.
   # [START update-PyPi]
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-config']
     entrypoint: 'bash'
-    args: [
+    args:
+          [
             'composer_py_update.sh',
             '${_COMPOSER_ENV_NAME}', '${_COMPOSER_REGION}',
             '--update-pypi-packages-from-file', '../../docker/requirements-airflow.txt'
@@ -175,9 +253,11 @@ steps:
 
 # - Sync plugins to GCS plugins directory.
   # [START sync-plugins]
-  - name: gcr.io/cloud-builders/gsutil
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['update-PyPi']
-    args: [
+    entrypoint: 'gsutil'
+    args:
+          [
             'rsync', '-r', '-c', '-d',
             'plugins/',
             'gs://${_COMPOSER_INPUT_BUCKET}/plugins'
@@ -187,15 +267,35 @@ steps:
 
 # - Sync DAGs to GCS DAGs directory.
   # [START sync-dags]
-  - name: gcr.io/cloud-builders/gsutil
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: ['sync-plugins']
-    args: [
+    entrypoint: 'gsutil'
+    args:
+          [
             'rsync', '-r', '-c', '-d',
             'dags/',
             'gs://${_COMPOSER_INPUT_BUCKET}/dags'
           ]
     id: 'sync-dags'
   # [END sync-dags]
+
+# - Run a test DAG & send email
+  # [START send-email]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    waitFor: ['sync-dags']
+    entrypoint: 'bash'
+    args:
+          [
+            'composer_dag_send_email.sh',
+            '${_COMPOSER_ENV_NAME}',
+            '${_COMPOSER_REGION}',
+            '${_DAG_TO_EMAIL}', '6', '20',
+            '${SHORT_SHA}'
+          ]
+    dir: './helpers/scripts'
+    id: 'send-email'
+ # [END send-email]
+
 timeout: 3600s
 images:
   - 'gcr.io/${PROJECT_ID}/${_COMPOSER_BUILD_IMG_NAME}'
