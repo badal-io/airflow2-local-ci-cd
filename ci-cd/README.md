@@ -19,7 +19,7 @@ This part contains GCP Cloud Build confiugration code that runs the Airflow 2 CI
 
 4. To add <ins>Airflow variables</ins> for Compose, update the `variables/composer-airflow-vars.json` with your key-value pairs (comma separated). Example:  `"key":"value"`
 
-5. Malually add secrets as environment variables via the Compose UI --> ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
+5. Manually add secrets as environment variables via the Compose UI --> ENVIRONMENT VARIABLES tab (for example SENDGID API KEY).
 
 6. Add your Py dependencies to the `docker/requirements-composer.txt` file
 
@@ -42,11 +42,11 @@ This part contains GCP Cloud Build confiugration code that runs the Airflow 2 CI
 
 ## GitOps
 
-The CI/CD pipeline automatically builds a container image from committed code, stores the image in Container Registry, performs unit and integration testing, and deploys and update variables, configuration, packages, dags, plugins to GCP Coomposer environments (dev or prod).
+The CI/CD pipeline automatically builds a container image from committed code, stores the image in Container Registry, performs unit and integration testing, and deploys and update variables, configuration, packages, dags, plugins to GCP Composer environments (dev or prod).
 
 ### Cloud Build Triggers
 
-### 1. For each environemnt create a trigger in GCP Cloud Build. Use the following parameters:
+### 1. For each environment create a trigger in GCP Cloud Build. Use the following parameters:
 
   - Event type:
 
@@ -56,7 +56,7 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
   - Source repository: <strong> Git repository </strong>
 
-  - Source branch: <strong> Branch </strong>. <em> For example, if there are two environments : dev and prod, you will need to create two triggers with the same repository, but with different branches to monitor </em>
+  - Source branch: <strong> Branch </strong>. <em> For example, if there are two environments: dev and prod, you will need to create two triggers with the same repository, but with different branches to monitor </em>
 
   - Included file filter:
 
@@ -137,10 +137,10 @@ The CI/CD pipeline automatically builds a container image from committed code, s
    - Imports variables form the composer-airflow-vars.json file in to Airflow database.
 
 12. <strong> id: `update-vars` </strong>
-   - Adds/Updates varibales and their values into the Composer environment. Variables/Values are populated in the `variables/composer-env-vars` file (comma separated KEY=VALUE). If no changes are in varibales/values, this step will be skipped. Please note, this step does not remove a variable, this has to be done manually from the Composer UI.
+   - Adds/Updates varibales and their values into the Composer environment. Variables/Values are populated in the `variables/composer-env-vars` file (comma separated KEY=VALUE). If no changes are in variables/values, this step will be skipped. Please note, this step does not remove a variable, this has to be done manually from the Composer UI.
 
 13. <strong> id: `update-config` </strong>
-   - Adds/Updates configuration lines in Composer. Configuration items should be populated in the `composer/composer-config` file. A list of Airflow config override KEY=VALUE pairs to set. If a config override exists, its value is updated; otherwise, a new config override is created. If no changes in configuration, this step will be skipped. Please note, this step does not remove configuration, this has to be done manually from the Composer UI.
+   - Adds/Updates configuration lines in Composer. Configuration items should be populated in the `composer/composer-config` file. A list of Airflow config override KEY=VALUE pairs to set. If a config override exists, its value is updated; otherwise, a new config overrides is created. If no changes in configuration, this step will be skipped. Please note, this step does not remove the configuration, this has to be done manually from the Composer UI.
 
 14. <strong> id: `update-PyPi` </strong>
    - Adds/Updates/Removes PyPi packages in Composer. Items should be populated in the `docker/requirements-composer.txt` file.
@@ -176,4 +176,4 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 | update-PyPi    	| Update PyPi packages in Composer       	|    Do   	|    Do    	|
 | sync-plugins   	| Sync plugins with Composer GCS         	|    Do   	|    Do    	|
 | sync-dags      	| Sync tags with Composer GCS            	|    Do   	|    Do    	|
-| send-email   	| Send an email upon successfull build   	|    Do   	|    Do   	|
+| send-email   	| Send an email upon successful build   	|    Do   	|    Do   	|

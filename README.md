@@ -27,8 +27,8 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 ## 1. Recommended dev tools to use:
 
-- OS: : `MAC OS, Linux Ubuntu, GCP Cloud Shell`   Note: Windows requires Windows Subsystem for Linux (WSL)
-- Code editiing/Development environment: `Visual Studio Code (VS Code)`
+- OS: `MAC OS, Linux Ubuntu, GCP Cloud Shell`   Note: Windows requires Windows Subsystem for Linux (WSL)
+- Code editing/Development environment: `Visual Studio Code (VS Code)`
 - Terminal client: `Visual Studio Code terminal`
 
 <ins>Note:</ins> &nbsp; Before working with your local development environment <ins><strong>fork</strong></ins> the repository, so you can have your own branch for development and custom changes.
@@ -41,7 +41,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 <strong> <ins>Note:</ins> &nbsp; GCP Cloud Shell has several limitations. Everytime when a shell session is expired or closed, you have to re-run the Airflow initializaiton steps given in the section #4 (step 4.1) </strong>
 
-  - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your crdentials: https://ide.cloud.google.com
+  - 2.1.1 &nbsp; Access GCP Cloud Shell from your browser using your credentials: https://ide.cloud.google.com
 
   - 2.1.2 &nbsp; Open a terminal session `(Menu Terminal -- New Terminal)` and clone the repo, go to the directory:
 
@@ -49,7 +49,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
   - 2.1.3 &nbsp; In the cloud shell UI, click on <strong>open folder</strong> and select the <strong>airflow2-local</strong> folder
 
-  - 2.1.4 &nbsp; Run the following commands to initialize the environment and install prequisities:
+  - 2.1.4 &nbsp; Run the following commands to initialize the environment and install prerequisites:
 
         chmod +x ./helpers/scripts/cloud-shell-init.sh && ./helpers/scripts/cloud-shell-init.sh
 
@@ -100,7 +100,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
   - 2.4.6 &nbsp; Once installed, launch `Docker Desktop`, go to <strong> Settings --> Resources --> WSL INTEGRATION and toggle "Ubuntu". Once done, click the "Apply & Restart" button  </strong>
 
-  - 2.4.7 &nbsp; Open a comamnd line in Windows (CMD) and excute the following command to make sure that Ubuntu has been set as a default WSL:
+  - 2.4.7 &nbsp; Open a command line in Windows (CMD) and execute the following command to make sure that Ubuntu has been set as a default WSL:
 
         wsl --setdefault Ubuntu
 
@@ -133,7 +133,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
   - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process.
 
-  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`.
+  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to include it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`.
 
   - Optionally add the <ins>send_email.py</ins> dag to the `.airflowignore` file as this dag is only for the CI/CD part (to avoid warnings and errors during unit tests).
 
@@ -141,7 +141,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 ### 3.2 GCP Project ID for GCP Connection
 
-  - Set the projet-id varibale in the `variables/docker-env-vars` or `variables/docker-env-secrets` file:
+  - Set the projet-id variable in the `variables/docker-env-vars` or `variables/docker-env-secrets` file:
 
      `GCP_PROJECT_ID='<project-id here>'`
 
@@ -155,7 +155,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
     <ins>Note:</ins> &nbsp; for <strong>GCP Cloud Shell</strong> you must <strong> re-run </strong> this command every time when a shell session is expired or ended.
 
-  - 4.2 Open a new terminal window and run the following command to make sure that all 3 containers (webserver, scheduler, postgres_db) are runnning and healthy:
+  - 4.2 Open a new terminal window and run the following command to make sure that all 3 containers (webserver, scheduler, postgres_db) are running and healthy:
 
         docker ps
 
@@ -163,7 +163,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
         ./helpers/scripts/gcp-auth.sh
 
-      <ins>Note:</ins> &nbsp; NOT required if you are workign via GCP Cloud Shell option, you can skip this step.
+      <ins>Note:</ins> &nbsp; NOT required if you are working via GCP Cloud Shell option, you can skip this step.
 
   - <strong> Airflow 2 is UP and Running! </strong>
 
@@ -171,7 +171,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 ## 5. Commands for operations & maintenance:
 
-  - To check if all 3 containers (webserver, scheduler, postgres_db) are running and healty:
+  - To check if all 3 containers (webserver, scheduler, postgres_db) are running and healthy:
 
         docker ps
 
@@ -183,13 +183,13 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
         docker-compose up
 
-  - To rebuild containers (if changes are aplied on dockerfile/docker-compose):
+  - To rebuild containers (if changes are applied on Dockerfile or Docker-Compose):
 
         docker-compose down
 
         docker-compose up --build
 
-  - To cleaning up all containers and remove database:
+  - To cleaning up all containers and remove the database:
 
         docker-compose down --volumes --rmi all
 
@@ -221,7 +221,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
         ./tests/airflow info
 
-  - To lauch a python session in Airflow:
+  - To launch a python session in Airflow:
 
         ./tests/airflow python
 
@@ -231,7 +231,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 <br/>
 
-## 7. Code linting and stying - Pre commit ##
+## 7. Code linting and stying - Pre-commit ##
 
   - 7.1 Install pre-commit app:
 
@@ -243,7 +243,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
         brew install pre-commit
 
-  - 7.2 Run a pre commit initialization command (inside the same dir where the code was cloned):
+  - 7.2 Run a pre-commit initialization command (inside the same dir where the code was cloned):
 
         pre-commit install
 
