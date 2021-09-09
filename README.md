@@ -121,19 +121,19 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 ## 3. Customizing Airflow Settings
    ### 3.1
 
-  - Add your Py dependencies to the `docker/requirements-airflow.txt` file
+  - Add your Py dependencies to the `docker/requirements-airflow.txt` file.
 
-  - Adapt and install DAGs into the `dags` folder
+  - Adapt and install DAGs into the `dags` folder.
 
-  - Adapt and install Plugins into the `plugins` folder
+  - Adapt and install Plugins into the `plugins` folder.
 
-  - Add variables to Airflow: `variables\docker-airflow-vars.json` file
+  - Add variables to Airflow: `variables\docker-airflow-vars.json` file.
 
-  - Add variables to Docker containers ENV: `variables\docker-env-vars` file, the file is added to the gitignore process
+  - Add variables to Docker containers' ENV: `variables\docker-env-vars` file.
 
-  - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process
+  - Add variables that contain secrets and API keys: `variables\docker-env-secrets` file, the file is added to the gitignore process.
 
-  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`
+  - If there is a custom Airflow configuration file ready, uncomment the line in Dockerfile in order to includ it in the image: `COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg`.
 
   - Optionally add the <ins>send_email.py</ins> dag to the `.airflowignore` file as this dag is only for the CI/CD part (to avoid warnings and errors during unit tests).
 
