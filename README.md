@@ -25,6 +25,27 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 <br/>
 
+### Project Structure
+```
+    .
+    ├── ci-cd                     # CI/CD deployment configuration
+    ├── dags                      # Airflow DAGs 
+    ├── data                      # Airflow DATA 
+    ├── docker                    # Docker configuration
+    ├── gcp-cloud-shell           # Cloud Shell custom csripts
+    ├── helpers                   # Backend scripts
+    ├── logs                      # Airflow logs 
+    ├── plugins                   # Airflow plugins
+    ├── tests                     # Tests
+    ├── variables                 # Varibales for environments
+    ├── .gitignore                # Git's ignore process
+    ├── pre-commit-config.yaml    # Pre-commit hooks
+    ├── LICENSE                   # Project license
+    ├── README.md                 # Readme guidlines
+    └── docker-compose.yaml       # Docker Compose deployemnt code
+```
+<br/>
+
 ## 1. Recommended dev tools to use:
 
 - OS: `MAC OS, Linux Ubuntu, GCP Cloud Shell`   Note: Windows requires Windows Subsystem for Linux (WSL)
