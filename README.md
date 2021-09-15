@@ -23,8 +23,6 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 - Automatic email notification upon a successful build.
 
 
-<br/>
-
 ### Project Structure
 ```
     .
