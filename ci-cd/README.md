@@ -60,8 +60,6 @@ The CI/CD pipeline automatically builds a container image from committed code, s
 
   - Included file filter:
 
-     - `composer/**`
-
      - `plugins/**`
 
      - `dags/**`
