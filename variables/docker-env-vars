@@ -5,6 +5,7 @@ AIRFLOW__CORE__LOAD_EXAMPLES=false
 AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=false
 AIRFLOW__WEBSERVER__RELOAD_ON_PLUGIN_CHANGE=true
 AIRFLOW__EMAIL__EMAIL_BACKEND=airflow.providers.sendgrid.utils.emailer.send_email
+AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL=30
 
 # - GCP project ID (required for GCP connection)
 GCP_PROJECT_ID='<your_project_id>' #<< GCP project-ID here
