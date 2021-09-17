@@ -236,7 +236,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
         ./tests/airflow bash
 
-  - To run an Airflow command within the environment, spin up an Ops container with a bash sessioin, then execute a command:
+  - To run an Airflow command within the environment, spin up an Ops container with a bash sessioin, then execute the command:
     
     example:
     
