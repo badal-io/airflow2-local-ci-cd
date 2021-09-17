@@ -168,7 +168,7 @@ Main features of Cloud Build CI/CD pipeline for Composer environment:
 
 ## 4. First-time initialization and service start:
 
-  - 4.1 Open a terminal and run the following commands (use <ins>`sudo`</ins> before the command for <ins>GCP Cloud Shell</ins> and <ins>Windows WSL</ins> VMs):
+  - 4.1 Open a terminal and run the following commands (You may need to use <ins>`sudo`</ins> before the command in some cases, such as: <ins>GCP Cloud Shell</ins>,  <ins>Windows WSL</ins>, <ins>Cloud Linux VMs</ins>):
 
         ./helpers/scripts/init_airflow.sh
 
