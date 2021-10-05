@@ -27,3 +27,7 @@ def test_dag_bag():
 def dag():
     default_args = {"owner": "airflow", "start_date": days_ago(1)}
     return DAG("test_dag", default_args=default_args, schedule_interval="@daily")
+
+def pytest_sessionfinish(session, exitstatus):
+  if exitstatus == 5:
+    session.exitstatus = 0
