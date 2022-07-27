@@ -3,7 +3,7 @@ ARG PYTHON_VERSION
 FROM python:$PYTHON_VERSION
 
 # Environment variabls
-ENV AIRFLOW_VER='2.1.1'
+ENV AIRFLOW_VER='2.3.3'
 ENV AIRFLOW_HOME=/opt/airflow
 
 
